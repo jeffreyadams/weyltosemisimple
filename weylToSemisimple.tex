@@ -1,4 +1,5 @@
-\documentclass[12pt,leqno]{article}
+\documentclass[10pt,leqno]{article}
+\usepackage{dynkin-diagrams}
 \usepackage{amssymb}
 \usepackage{amsrefs}
 \usepackage{verbatim}
@@ -70,7 +71,7 @@
 \newcommand{\caI}{\mathcal I}
 \newcommand{\I}{\mathcal I}
 \renewcommand{\O}{\mathcal O}
-\renewcommand{\S}{\mathcal S}
+%\renewcommand{\S}{\mathcal S}
 \newcommand{\caN}{\mathcal N}
 \newcommand{\caW}{\mathcal W}
 \newcommand{\caP}{\mathcal P}
@@ -102,7 +103,8 @@
 \newcommand{\caB}{\mathcal B}
 \newcommand{\chcaD}{\mathcal D^\vee}
 \newcommand{\T}{\mathbb T}
-\newcommand{\G}{G}
+\newcommand{\Gsc}{G_{\text{sc}}}
+\newcommand{\Gad}{G_{\text{ad}}}
 \renewcommand{\H}{\mathbb H}
 {\renewcommand{\h}{\mathfrak h}}
 \renewcommand{\q}{\mathfrak q}
@@ -150,11 +152,15 @@
 \newcommand{\Khat}{\widehat K}
 \newcommand{\Wconj}{[W]}
 \newcommand{\Weconj}{[{W_e}]}
-\newcommand{\Gssconj}{[{G^\text{ss}}]}
-\newcommand{\Gss}{G^\text{ss}}
+\newcommand{\Gssconj}{[{G_\text{ss}}]}
+\renewcommand{\ss}{\text{ss}}
+\newcommand{\e}{\text{e}}
+\newcommand{\Gss}{G_\ss}
 \newcommand{\Wext}{\negthinspace\negthinspace\phantom{a}^\delta W}
-\newcommand{\Text}{\negthinspace\negthinspace\phantom{a}^\delta T      }
-
+\newcommand{\Text}{\negthinspace\negthinspace\phantom{a}^\delta T}
+\newcommand{\Gext}{\negthinspace\negthinspace\phantom{a}^\delta G}
+\newcommand{\Waff}{W_{\text{a}}}
+\newcommand{\Waffe}{\wt W_{\text{a}}}
 \def\fh{\mathfrak h}
 \def\fg{\mathfrak g}
 \def\fc{\mathfrak c}
@@ -246,6 +252,7 @@ representation.
 
 
 \begin{lemma}
+  \label{l:basic}
 Suppose $w\in W$ is elliptic. Then any two elements of
 $p\inv(w)\subset N(T)$ are $T$-conjugate. Therefore the map $w\rightarrow n_w\in p\inv(w)$ induces
 a well-defined map
@@ -253,35 +260,76 @@ $$
 \Psi:[w]\rightarrow [t_w]: \Weconj\rightarrow\Gssconj.
 $$
 \end{lemma}
-This map has been studied by many people \dots on a case-by-case
-basis. Our main result is a uniform algorithm to compute this map. We
+This map has been studied by many people, including Reeder
+\cite{reeder_torsion} and Gross-Levy-Reeder-Yu \cite{rgly}. Some
+tables, obtained by case-by-case calculations are in Bouwknegt
+\cite{bouwknegt}.
+Our main result is a uniform algorithm to compute this map. We
 also consider the twisted case where $W$ is replaced by $\Wext$, the
 semidirect product of $W$ and a distinguished involution of finite
 order.
 
-\sec{The Algorithm}\label{const}
+\sec{The Algorithm}
+\label{const}
 
-Let $G,T,N(T),W$ be as in the introduction.  We say an automorphism of
-$G$ is {\it distinguished} if it preserves some splitting datum
-$(G,T,\{X_\alpha\})$. Recall an inner automorphism is distinguished if
-and only if it is trivial, and the outer automorphism group of $G$ is
-isomorphic to the group of automorphisms of a splitting datum. See ?.
+Let $G,T,N(T),W$ be as in the introduction.
+We begin by discussing the twisted case.
 
-Now suppose $\delta$ is a distinguished automorphism of $G$ of finite
-order, preserving a splitting datum $(G,T,\{X_\alpha\})$. Then
-$\delta$ induces an automorphism, also denoted $\delta$ of $W$, and we define
+A splitting datum is a triple $(G,T,\{X_\alpha\mid \alpha\in\Pi\})$
+where $\Pi$ is a set of simple roots of $T$ in $G$, and for each
+$\alpha\in\Pi$, $X_\alpha$ is an $\alpha$-weight vector.  We sometimes
+drop $\Pi$ from the notation. We say an automorphism of $G$ is {\it
+  distinguished} if it preserves some splitting datum.  An
+automorphism is distinguished if and only if it is trivial,
+any two splitting data are conjugate by a unique inner automorphism,
+and the
+outer automorphism group of $G$ is isomorphic to the group of
+automorphisms of a splitting datum.
+
+Suppose $\Pi$ is a fixed set of simple roots, and
+$(G,T,\{X_\alpha\})=(G,T,\{X_\alpha\mid\alpha\in\Pi\})$ is a splitting
+datum.  Suppose $\delta$ is an automorphism of $G$, preserving
+the splitting datum.
+Then $\delta$ induces an
+automorphism, also denoted $\delta$ of $W$, and we define
 $$
-{}^\d G=G \rtimes\langle\delta\rangle, \quad \Wext=W\rtimes\langle\delta\rangle.
+\Gext=G \rtimes\langle\delta\rangle, \quad \Wext=W\rtimes\langle\delta\rangle.
 $$
-
 
 Let $\Delta=\Delta(T,G)$ be the root system, and
 $V=\R\langle\Delta\rangle$. This is a representation of $\Wext$ which
 we refer to as the reflection representation.
+We say $w\in\Wext$ is elliptic if it has no nontrivial fixed vectors
+nin the reflection representation.
+Write $[w]$ for the $W$-conjugacy class of $w$. We consider elements $w\in W\delta$,
+and write $[(W\delta)_e]$ for the $W$-conjugacy
+classes of elliptic elements in $W\delta$.
+
+We say an element of $\Gext$ is semisimple if $\Ad(g)$ is semisimple.
+Write $[g]$ for the $G$-conjugacy class of $g\in \Gext$. We consider
+elements $g\in G\delta$, and write $[(G\delta)_{\ss}]$ for the $G$-conjugacy classes of semisimple elements in $G\delta$.
+
+\medskip
+
+\noindent{\it Question: Is this good notation? Also I think $(W\delta)_e\ne W_e\delta$. On the other hand $(\Gss)\delta=(G\delta)_{\ss}$.
+  Should we introduce $(G\delta)_e$ instead? Finally: check the proper notation is conjugacy by $W$ and $G$, not $\Wext$ and $\Gext$.}
+\medskip
+
+Now Lemma \ref{l:basic} holds in the twisted case as follows.
+
+\begin{lemma}
+  \label{l:basictwisted}
+Suppose $w\in \Wext$ is elliptic. Then any two elements of
+  $p\inv(w)\subset N(\Text)$ are $T$-conjugate. Therefore the map $W\delta\ni w\rightarrow n_w\in p\inv(w)\in G\delta$  induces
+a well-defined map
+$$
+\Psi:[w]\rightarrow [t_w]: [(W\delta)_\e]\rightarrow[(G\delta)_{\ss}]
+$$
+\end{lemma}
 
 
-We fix a set $\Delta^+\subset\Delta$ of positive roots.
-Let $\Pi$ be the corresponding set of simple roots, and $\caC$ be the corresponding dominant chamber,
+
+
 
 Suppose $w\in \Wext$. Let
 \begin{subequations}
@@ -345,9 +393,9 @@ where $\overline{\ch\lambda_{i+1}}$ is the element in the $W_i$-orbit of $\ch\la
 
 \begin{theorem}
 \label{t:main}
-Suppose $w\in W\delta\subset \Wext$ is elliptic. Construct $\ch\lambda_0$ by the algorithm. Then
+Suppose $w\in (W\delta)_\e$. Construct $\ch\lambda_0$ by the algorithm. Then
 $$
-\Psi([w])=[\delta e^{\frac{2\pi i\ch\lambda_0}d}].
+\Psi([w])=[e^{\frac{2\pi i\ch\lambda_0}d}\delta].
 $$
 \end{theorem}
 \begin{remark}
@@ -362,23 +410,24 @@ sequence. However, these elements are all conjugate to $n_w$. See
 example \ref{eg:regular}.
 \end{remark}
 
-{\bf To Jeff, the map $\Psi$ is only defined for nontwisted case in the introduction}
+
 
 \sec{Digression on the good elements}
 
-\subsection{} The algorithm we gave above is partially motivated by
+%\subsection{}
+The algorithm in Section \ref{const} is in part motivated by
 the construction of the good elements in a given conjugacy class of
 $\Wext$. In this section, we make a digression and discuss this
 construction.
 
-The good elements in $W$ are introduced by Geck and Michel in
-\cite{geck_michel_good} and the notion is generalized to $\Wext$ by Geck, Kim and
+The good elements in $W$ were introduced by Geck and Michel in
+\cite{geck_michel_good} and the notion was generalized to $\Wext$ by Geck, Kim and
 Pfeiffer in \cite{gkp}.
 
 Let $B^+$ be the braid monoid associated with $(W,S)$. Then there is a
 canonical injection $j:W\longrightarrow B^+$ identifying the
 generators of $W$ with the generators of $B^+$ and
-$j(w_1w_2)=j(w_1)j(w_2)$ for $w_1,w_2\in W$ such that
+satisfying $j(w_1w_2)=j(w_1)j(w_2)$ for $w_1,w_2\in W$ whenever
 $\ell(w_1w_2)=\ell(w_1)+\ell(w_2)$.
 
 Now the automorphism $\delta$ induces an automorphism of $B^+$, which
@@ -397,7 +446,7 @@ parabolic subgroup of $W$ generated by $\Pi_i$.
 
 It was proved in \cite{geck_michel_good}, \cite{gkp} and \cite{he_minimal_length_double_cosets} that for any
 conjugacy class of $\underline W$, there exists a good minimal length
-element. In \cite{he_nie_minimal_finite}, the second and third-named authors  
+element. In \cite{he_nie_minimal_finite}, the second and third-named authors
 (wrong reference: only 2 authors?) gave a
 general proof, which also provides an explicit construction of good
 minimal length elements.
@@ -580,11 +629,11 @@ Hence the lifting of $\d_1$ are not all conjugate in $G$. In particular, the Tit
 We need a formula for the cycle defined by these lifts.
 
 \begin{lemma} \label{factor}{\cite{ls}*{Lemma 2.1A}}
-Given $x,y\in \Wext$ let 
+Given $x,y\in \Wext$ let
 $$
 \gamma^\vee=\sum_{\g \in \D^+ \cap y \i(\D^-) \cap y \i x \i (\D^+)} \pi i \g^\vee.
 $$
-Then 
+Then
 $$
 n(x)n(y)=\exp(\pi i\gamma^\vee)n(xy)
 $$
@@ -620,8 +669,8 @@ Notice that $\ell(z y)=\ell(z) + \ell(y)$. By Lemma \ref{factor} one has \begin{
 \subsection{A technical lemma}
 
 \begin{lemma} \label{tech}
-	Let notation be as in above. We have $$\D^- - z \i(\D_{\Pi_1})-\D_K = \cup_{i=0}^{d-1} y^{-i}(\D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-)).$$ Moreover, each root of $\D^- - z \i(\D_{\Pi_1})-\D_K$ lies in exactly $\frac{d \th_1} {2\pi}$ of the sets $y^{-i}(\D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-))$ for $0 \le i \le d-1$.
-	
+Let notation be as above. We have $$\D^- - z \i(\D_{\Pi_1})-\D_K = \cup_{i=0}^{d-1} y^{-i}(\D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-)).$$ Moreover, each root of $\D^- - z \i(\D_{\Pi_1})-\D_K$ lies in exactly $\frac{d \th_1} {2\pi}$ of the sets $y^{-i}(\D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-))$ for $0 \le i \le d-1$.
+
 %\begin{enumerate}\item The element $y \in W$ acts on $\D^- - z \i(\D_{\Pi_1})-\D_K^-$;\item Each orbit is of size $\frac{2 \pi}{\th_1}$\item The set $\D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-)$ is a principal domain for the action of $y^{\frac{d \th_1}{2 \pi}}$.\end{enumerate}
 \end{lemma}
 \begin{remark}
@@ -630,33 +679,32 @@ The proof uses a similar method of counting root hyperplanes as in \cite[Lemma 2
 
 \begin{proof}
 	%(1) Recall that $\d_1 \in {}^{\Pi_1} ({}^\d W)^{\Pi_1}$ with $\d_1(\Pi_1)=\Pi_1$, $y=z \i \d_1 z \in W_K \d$, $z \in W^K$ and $\d(K)=K$.Since $y \in W_K \d$ and $\d(K)=K$, we have $y (\D^--\D_K^-)=\D^--\D_K^-$. On the other hand $y z \i(\D_{\Pi_1})=z \i \d_1(\D_{\Pi_1})=z \i (\D_{\Pi_1})$. Part (1) is proved.(3) We first show that $$\D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-) \subset \D^--z \i(\D_{\Pi_1})-\D_K^-.$$Let $\g \in \D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-)$.If $\g \in \D_K^-$, then $z(\g) \in \D^-$ since $z \in W^K$. That is a contradiction.If $\g \in z \i(\D_{\Pi_1})$, then $z (\g) \in \D_{\Pi_1} \cap \D^+=\D_{\Pi_1}^+$ and thus $\d_1 z(\g) \in \D_{\Pi_1}^+$. That is a contradiction.
-	
-	Recall that $v_0$ is a general point of $V(\d_1, \th_1)$. Then $z \i(v_0)$ is a general point of $V(y, \th_1)$. For $i \in \mathbb Z$, set $v_i'=y^{-i} z^{-1} (v_0)$. Since $V(y, \th_1)_{\mathbb C}$ is the sum of eigenspaces of $y$ of eigenvalues $e^{\pm \th_1 i}$,  the points $v_i'$ for $i \in \mathbb Z$ are contained in the subspace $D$ spanned by $v_0'$ and $v_1'$. In particular $\dim D \le 2$.
-	
-	We first consider the case where $\dim D=1$. In this case, we have $\th_1 = \pi$ and hence $w=-1$. Then $\D_{\Pi_1} = \emptyset$, $\d_1 = w$, $\D_K = \D$ and $z=1$. One checks that $\D^- - z \i(\D_{\Pi_1})-\D_K = \emptyset = \D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-)$. So the statement follows.
-	
-	Now we consider the case where $\dim D=2$. Let $S \subseteq D$ the circle containing $v_i'$ for $i \in \mathbb Z$. Note that $v_i'=v_j'$ if $(i-j)\th_1/(2\pi) \in \mathbb Z$.
-	
-	
-	Set $\mathcal B= \D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-)$. Then \[\tag{a}\mathcal B=\{\b \in \D^-; H_\b \text{ separates } z^{-1}(\caC) \text{ from } \caC \text{ and } y^{-1} z^{-1}(\caC)\},\] where $\caC$ is the dominant chamber and $H_\b \subseteq V$ denotes the root hyperplane of $\b$.
-	
-	As $z \in W^K$, $\D_K \cap \mathcal B = \emptyset$. Since $y \in W_K \d =\d W_K$, we have $y^{-i}(\mathcal B) \subseteq \D^- - \D_K$. Let $\g \in y^{-i}(\mathcal B)$. By (a), $H_\g$ separates $y^{-i} z^{-1} \caC$ from $y^{-i-1} z^{-1} \caC$. This means $\g \notin z^{-1}(\D_{\Pi_1})$ as $x(\Pi_1)=\Pi_1$. So $$y^{-i}(\mathcal B) \subseteq \D^- - z^{-1}(\D_{\Pi_1}) -\D_K.$$
-	
-	Let $\b \in \D^- - z^{-1}(\D_{\Pi_1}) -\D_K$. If $v_k' \in H_\b$ for some $k$, then $z^{-1}(V_{\th_1}) \subseteq H_\b$ since $v_k'=y^{-k} z^{-1}(v_0)$ is a general point of $z^{-1}(V_{\th_1})$. This means $\b \in z^{-1}(\D_{\Pi_1})$, a contradiction. So $v_i' \notin H_\b$ for any $i \in \mathbb Z$. Thus, $H_\b \cap S = \{\pm p\}$ for some $p \in S$. Let $S^+, S^-$ be the two connected components of $S - \{\pm p\}=S - H_\b$ such that $\bar v, S^+$ are on the same side of $H_\b$. 
-	
-	Let $\overline\caC$ be the closure of $\caC$. Recall that $v$ is a general point of $V^{\d_1}$. As $\b \notin \D_K$ and $\bar v \in \overline\caC$, $\bar v \notin H_\b$ and 
-	
-	(b) $y^{-i}(\bar v)=\bar v, y^{-i}(\caC)$ are on the same side of $H_\b$ for $i \in \mathbb Z$.
-	
-	Similarly, one has
-	
-	(c) $v_i', y^{-i} z^{-1}(\caC)$ are on the same side of $H_\b$ for $i \in \mathbb Z$.
-	
-    Combining (a), (b) and (c), we have
-	
-	(d) $\b \in y^{-i}(\mathcal B)$ if and only if $v_i' \in S^-$ and $v_{i+1}' \in S^+$.
-	
-	Notice that the acute arc $(v_i', v_{i+1}')$ is of angle $0 < \th_1 < \pi$. It follows that that the number of integers $0 \le i \le d-1$ satisfying the condition (d) is exactly $d\th_1/2\pi$. The proof is finished.
+
+Recall that $v_0$ is a general point of $V(\d_1, \th_1)$. Then $z \i(v_0)$ is a general point of $V(y, \th_1)$. For $i \in \mathbb Z$, set $v_i'=y^{-i} z^{-1} (v_0)$. Since $V(y, \th_1)_{\mathbb C}$ is the sum of eigenspaces of $y$ of eigenvalues $e^{\pm \th_1 i}$,  the points $v_i'$ for $i \in \mathbb Z$ are contained in the subspace $D$ spanned by $v_0'$ and $v_1'$. In particular $\dim D \le 2$.
+
+We first consider the case where $\dim D=1$. In this case, we have $\th_1 = \pi$ and hence $w=-1$. Then $\D_{\Pi_1} = \emptyset$, $\d_1 = w$, $\D_K = \D$ and $z=1$. One checks that $\D^- - z \i(\D_{\Pi_1})-\D_K = \emptyset = \D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-)$. So the statement follows.
+
+Now we consider the case where $\dim D=2$. Let $S \subseteq D$ the circle containing $v_i'$ for $i \in \mathbb Z$. Note that $v_i'=v_j'$ if $(i-j)\th_1/(2\pi) \in \mathbb Z$.
+
+Set $\mathcal B= \D^- \cap z \i(\D^+) \cap z \i \d_1 \i(\D^-)$. Then \[\tag{a}\mathcal B=\{\b \in \D^-; H_\b \text{ separates } z^{-1}(\caC) \text{ from } \caC \text{ and } y^{-1} z^{-1}(\caC)\},\] where $\caC$ is the dominant chamber and $H_\b \subseteq V$ denotes the root hyperplane of $\b$.
+
+As $z \in W^K$, $\D_K \cap \mathcal B = \emptyset$. Since $y \in W_K \d =\d W_K$, we have $y^{-i}(\mathcal B) \subseteq \D^- - \D_K$. Let $\g \in y^{-i}(\mathcal B)$. By (a), $H_\g$ separates $y^{-i} z^{-1} \caC$ from $y^{-i-1} z^{-1} \caC$. This means $\g \notin z^{-1}(\D_{\Pi_1})$ as $x(\Pi_1)=\Pi_1$. So $$y^{-i}(\mathcal B) \subseteq \D^- - z^{-1}(\D_{\Pi_1}) -\D_K.$$
+
+Let $\b \in \D^- - z^{-1}(\D_{\Pi_1}) -\D_K$. If $v_k' \in H_\b$ for some $k$, then $z^{-1}(V_{\th_1}) \subseteq H_\b$ since $v_k'=y^{-k} z^{-1}(v_0)$ is a general point of $z^{-1}(V_{\th_1})$. This means $\b \in z^{-1}(\D_{\Pi_1})$, a contradiction. So $v_i' \notin H_\b$ for any $i \in \mathbb Z$. Thus, $H_\b \cap S = \{\pm p\}$ for some $p \in S$. Let $S^+, S^-$ be the two connected components of $S - \{\pm p\}=S - H_\b$ such that $\bar v, S^+$ are on the same side of $H_\b$.
+
+Let $\overline\caC$ be the closure of $\caC$. Recall that $v$ is a general point of $V^{\d_1}$. As $\b \notin \D_K$ and $\bar v \in \overline\caC$, $\bar v \notin H_\b$ and
+
+\noindent(b) $y^{-i}(\bar v)=\bar v, y^{-i}(\caC)$ are on the same side of $H_\b$ for $i \in \mathbb Z$.
+
+Similarly, one has
+
+\noindent(c) $v_i', y^{-i} z^{-1}(\caC)$ are on the same side of $H_\b$ for $i \in \mathbb Z$.
+
+Combining (a), (b) and (c), we have
+
+\noindent(d) $\b \in y^{-i}(\mathcal B)$ if and only if $v_i' \in S^-$ and $v_{i+1}' \in S^+$.
+
+Notice that the acute arc $(v_i', v_{i+1}')$ is of angle $0 < \th_1 < \pi$. It follows that that the number of integers $0 \le i \le d-1$ satisfying the condition (d) is exactly $d\th_1/2\pi$. The proof is finished.
 \end{proof}
 
 \begin{figure}
@@ -714,10 +762,182 @@ Let $L_K$ is the standard Levi subgroup of $G$ with root system $\D_K$. We have 
 \end{align*} Here the second conjugation follows from Lemma \ref{average}; the third one follows from Proposition \ref{regular} and that $\rho^\vee-z^{-1}(\rho_{\Pi_1}^\vee)-\rho_K^\vee, z^{-1}(\phi_1^\vee)$ are central for $G_K$. The proof is finished.
 %\end{proof}
 \sec{Kac diagrams}
+\label{s:kac}
+
+We consider our simple group $G$, with Cartan subgroup $T$, positive
+roots $\Delta$, simple roots $\Pi$ and Weyl group $W$. The semisimple
+conjugacy classes of $G$ of finite order are parametrized by their
+{\it Kac diagram}. We summarize the statements here, and refer to
+\cite{ov}, \cite{kac_book} and \cite{reeder_torsion} for details.
+
+We first consider the untwisted case. Let $X^*,X_*$ be the character
+and co-character lattices of $T$.  Let $\Delta\subset X^*$ be the
+roots, $\ch\Delta\subset X_*$ the co-roots, with corresponding root
+lattice $R=Z\Delta$ and co-root lattice $\ch R=\Z\ch\delta$.
+
+Let $\mathfrak t=\Lie(T)$. We can identify
+$$
+X_*=\{\ch\gamma\in\mathfrak t\mid \exp(2\pi i\ch\gamma)=1
+$$
+The co-weight lattice is  $\ch P=\{\ch\gamma\in X_*\otimes\Q\mid\langle \alpha,\ch\gamma\rangle\in\Z\}$, and
+$\ch\gamma\in\ch P$ if and only if $\exp(2\pi i\ch\gamma)\in Z(G)$, and this induces a canonical isomorphism
+$$
+\ch P/X_*\simeq Z(G).
+$$
+Let $\Gsc$ be the simply connected cover of $G$. Then $Z(\Gsc)\simeq \ch P/\ch R$.
+
+Fix a set of positive roots, and choose an ordering
+$\alpha_1,\dots, \alpha_n$ of the simple roots.
+Let $\ch\gamma_1,\dots,\ch\gamma_n$ be the corresonding fundamental co-weights.
+We also set $\ch\gamma_0=0$.
+Let $\wt\alpha_0$ be the
+highest root, and define $\{c_i\mid 0\le i\le n\}$ by $c_0=1$ and
+$\wt\alpha_0=\sum_{i=1}^n c_i\alpha_i$. Let $\alpha_0$ be the affine linear functional $1-\wt\alpha_0$.
+
+Let $\Waff=W\ltimes \ch R$ be the affine Weyl group. This acts on $V$.
+We define the {\it fundamental alcove} to be
+$$
+C=\{v\in V\mid \langle\alpha_i,v\rangle>0, 0\le i\le n\}.
+$$
+
+\begin{lemma}
+The closure $\overline C$ of $C$ is a fundamental domain for the action of $\Waff$ on $V$.
+Furthermore
+$$
+\overline C=\{\sum_{i=0}^n a_i\ch\gamma_i\mid a_i\ge 0\text{ and }\sum_{i=0}^n c_ia_i=1\}
+$$
+\end{lemma}
+See \cite{bourbaki_4-6}*{Chapitre 6, \S2}.
+
+Let $\Waffe$ be the extended affine Weyl group: $\Waffe=W\ltimes
+X_*$, and set
+\begin{subequations}
+\renewcommand{\theequation}{\theparentequation)(\alph{equation}}  
+  
+
+
+\begin{equation}
+\Omega=X_*/\ch R.
+\end{equation}
+There are canonical isomorphisms:
+\begin{equation}
+\pi_1(G)\simeq \Omega\simeq \Stab_{\Waffe}(C).
+\end{equation}
+Also $\Omega$ acts on $\Waff$, and there is an isomorphism
+\begin{equation}
+\Waffe\simeq \Omega\ltimes\Waff.
+\end{equation}
+\end{subequations}
+Finally the second isomorphism in (b) induces an action of $\Omega$ on
+the extended Dynkin diagram, preserving the labelling of the nodes,
+and hence on 
+the set of Kac diagrams.
+For details see \cite{bourbaki_4-6} and \cite{reeder_torsion}.
+
+\begin{exampleplain}
+  Suppose $G=Spin(2n,\C)$.  The labelled extended Dynkin diagram is
+
+  \medskip
+  
+\begin{dynkinDiagram}[Kac,extended,root radius=.12cm, edge  length=1.0cm]{D}{}
+\dynkinLabelRoots{1,1,2,2,2,2,1,1}
+\dynkinLabelRoots*{a,b,,,,,c,d}
+\end{dynkinDiagram}
+
+\medskip
+
+We refer to the four nodes with label $1$ by $a,b,c,d$ as indicated.
+
+If $n$ is even $Z(G)\simeq \Ztwo\times\Ztwo$. The action on
+$\{a,b,c,d\}$ is generated by $a\leftrightarrow b$ and
+$c\leftrightarrow d$.
+
+If $n$ is odd $Z(G)\simeq \Z/4\Z$. The action is generated by the
+cyclic permutation $a\rightarrow c\rightarrow b\rightarrow
+d\rightarrow a$.
+
+  
+\end{exampleplain}
+\begin{definition}
+A Kac diagram is a vector $X=(a_0,\dots, a_n)$ where
+each $a_i$ is a non-negative integer and the (non-zero) $a_i$ are relatively prime.
+We set $d(X)=\sum_{i=0}^n a_ic_i$, and define
+$$
+t(X)=\exp((2\pi i\sum_{i=1}^n a_i\ch\gamma_i)/d)\in T.
+$$
+Thus $t(X)^d\in Z(G)$.
+\end{definition}
+
+We view a Kac diagram as the extended Dynkin diagram, with each node
+$0\le i\le n$ labelled by the corresponding non-negative integer
+$a_i$ (above the node) and also with the corresponding $c_i$ (below or
+to the side).
+
+\begin{exampleplain}
+Consider the diagram for $E_8$ (the affine node is the one to the right):  
+
+\begin{dynkinDiagram}[Kac,extended,root radius=.12cm, edge length=1.0cm]{E}{8}
+\dynkinLabelRoots{1,2,3,4,5,6,4,2,3}
+\dynkinLabelRoots*{1,1,1,1,1,1,1,1,1}
+\end{dynkinDiagram}
+
+\medskip The $c_i$ are $2,3,4,6,5,4,3,2,1$, and each $a_i=1$. Then
+$d=\sum a_ic_i=30$. The
+corresponding element is
+$$
+t(X)=\exp(2\pi i(\sum_{i=1}^8 \ch\gamma_i)/30)=\exp(2\pi i\ch\rho/30)
+$$
+where $\ch\rho$ is one-half the sum of the positive coroots.  This is
+the Coxeter element, which is a regular element of order $30$ (the
+Coxeter number).
+\end{exampleplain}
+
+
+
+
+\begin{proposition}\hfil
+\begin{enumerate}
+\item   If $X$ is a Kac diagram then $t(X)^d\in Z(G)$, and $t(X)$ has finite order.
+\item If $t\in T$ satisfies $t^d\in Z(G)$ then $t=t(X)$ for some Kac diagram $X$.
+\item  $t(X)$ is $G$-conjugate to $t(Y)$ if and only if $Y=\omega X$ for some $\omega\in\Omega$.
+\item The Dynkin diagram of the identity component of $\Cent_G(t(X))$
+  is the nodes labelled $0$ (and the corresponding edges).
+\end{enumerate}
+
+\begin{exampleplain}
+Suppose $G$ is simply connected and $X$ is a Kac diagram. Then
+$t(X)\in Z(G)$ if and only if $X$ consists of a single node with
+$a_i=c_i=1$, and all other nodes have $c_j=0$. Thus
+$i\mapsto \exp(2\pi i\ch\gamma_i)$ is a bijection between the nodes
+labeled $1$ and $Z(G)$. Furthermore the action of $Z(G)$ on Kac
+diagrams is by automorphism of the extended Dynkin diagram preserving
+the the labeling $c_i$ of the nodes. 
+\end{exampleplain}
+
+
+\begin{lemma}
+If $w\in W$ is elliptic, and $[n_w]=[t(X)]$, then $\omega X=X$ for all $\omega\in\Omega$.
+\end{lemma}
+
+\subsec{The twisted case}
+\label{s:kactwisted}
+
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
 
 \sec{Table}
 
-\bibliographystyle{plain} 
+\bibliographystyle{plain}
 \bibliography{./refs.bib}
 
 \end{document}
