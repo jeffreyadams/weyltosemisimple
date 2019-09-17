@@ -295,7 +295,7 @@ important special case the choice of $n(w)$ is unique up to
 conjugation. We say $w\in W$ is {\it elliptic} if it has no nontrivial fixed
 vectors in the reflection representation.  It is well known that if
 $w$ is elliptic then any two elements of $p\inv(w)\subset N(T)$ are
-$T$-conjugate (see Lemma \ref{l:conjugate}).
+$T$-conjugate (see Lemma \ref{l:conjugate}). \remind{As $n(w)$ is used in section 5 as Tits lifting, it is better to change to a different symbol here}
 
 \begin{definition}
 \label{d:basic}
@@ -502,7 +502,7 @@ generality. The element $\exp(2\pi i\ch\lambda_0/d)\delta \in \Gext$ is
 obtained from an admissible subsequence of $(\th_1, \ldots, \th_k)$
 is, in general, different from the element obtained here using the
 full sequence. However by the Theorem these elements are all
-conjugate. See example \ref{eg:regular}.
+conjugate. %See example \ref{eg:regular}.
 \end{remarkplain}
 
 We will use the following conjugacy result\footnote{We thank Dipendra Prasad for bringing this result to our attention.}.
@@ -672,7 +672,7 @@ regular eigenvector. We say $w$ is {\it $d$-regular} if the corresponding eigenv
 order $d$ ($d$ turns out to be independent of the choice of regular eigenvector).
 Following \cite{rgly} we say
 element $w$ is {\it $\mathbb Z$-regular} if $\langle w\rangle$ acts freely
-on $\Delta$. The following result is in \cite{AH}*{Lemma 7.2}.
+on $\Delta$. The following result is proved in \cite[Prop. 1]{rgly}, see also \cite{AH}*{Lemma 7.2}.
 
 \begin{lemma} Suppose $w\in W\delta$ is $d$-regular.  Then
 $o(w)=\text{lcm}(o(\delta),d)$.  The following conditions are
@@ -684,12 +684,8 @@ equivalent:
 	\end{enumerate}
 \end{lemma}
 
-In particular if $w$ is regular then it is $\Z$-regular, and if $\delta=\text{id}$ the converse holds.
-The converse does not hold in general:
-in type ${}^2 E_6$, the elements with characteristic
-polynomial $\Phi_6 \Phi_3^2$ are of order $6$ and are $3$-regular (see
-\cite{springer_regular}*{Table 8}), but not $\Z$-regular. (This is the only exception
-in a simple group.)
+In particular if $w$ is $\Z$-regular then it is $d$-regular for some $d$, and if $\delta=\text{id}$ the converse holds.
+The converse does not hold in general. %:in type ${}^2 E_6$, the elements with characteristic polynomial $\Phi_6 \Phi_3^2$ are of order $6$ and are $3$-regular (see \cite{springer_regular}*{Table 8}), but not $\Z$-regular. (This is the only exception in a simple group.)
 
 \begin{proposition}\label{regular} Suppose $w \in W\d$ is elliptic and
 regular. Let $\theta \in \G_w$ such that $V(w, \theta)$ contains a
@@ -767,7 +763,7 @@ $(2\pi/d)$ is admissible in the sense of
 \ref{r:full}.
 \end{comment}
 
-
+\begin{comment}
 \subsection{Example}\label{eg:regular}
 Let $W$ be of type $E_6$ and let $\d$ be the unique nontrivial
 automorphism of $(W, \Pi)$. Up to $W$-conjugation, there is a unique
@@ -807,6 +803,7 @@ t_2:=\a_3^\vee(-1) t_1 \a_3^\vee(-1)=\delta \exp(\frac{2\pi i}{6}(10, 16, 18, 30
 So $t$ is conjugate to $t'$.
 
 \bigskip
+\end{comment}
 
 \sec{The inductive step}
 
@@ -831,9 +828,9 @@ $\l_0^\vee$ we constructed in section \ref{const} is fixed by $\d$.
   that $\overline{\l_{i+1}^\vee} =
   y_i(\l_{i+1}^\vee)$. Then
   $$\overline{\l_{i+1}^\vee}=y_i \d_{i+1} y_i^{-1}
-  (\overline{\l_{i+1}^\vee}) =y_i \d_i x_i y_i^{-1}
+  (\overline{\l_{i+1}^\vee}) =y_i \d_i x_{i+1} y_i^{-1}
   (\overline{\l_{i+1}^\vee}).$$ Note that
-  $y_i \d_i x_i y_i^{-1} \in W_i\delta_i$ and that
+  $y_i \d_i x_{i+1} y_i^{-1} \in W_i\delta_i$ and that
   $\overline{\l_{i+1}^\vee}$ is dominant for $\Delta_i^+$. Therefore,
   $\d_i$ fixes $\overline{\l_{i+1}^\vee}$ and hence also fixes
   $\l_i^\vee$ as desired.
@@ -841,11 +838,13 @@ $\l_0^\vee$ we constructed in section \ref{const} is fixed by $\d$.
 
 \subsection{The lifting $n(x)$}\label{setup}
 
+We prove the main result using the induction argument for the triple $(\Delta, \d, w)$ with $w$ an element in $W(\Delta) \d$. 
+
 We may regard $\delta\circ\Ad(x_1)$ as an automorphism of $W_1$ and of
 the Levi subgroup $L_{\Pi_1}$ associated to $\Pi_1$. Then
-$\d_1 (x_2 \cdots x_k)$ is an elliptic element of
+$\d_1 x_2 \cdots x_k$ is an element of
 $W_1 \rtimes \langle\d \circ \Ad(x_1)\rangle$. Thus by the inductive
-hypothesis on the Levi subgroup associated to $\Pi_1$, we have that
+hypothesis on $(\Delta_1, \d_1, w)$, we have that
 
 (a) $n(w)$ is conjugate to $n(\d_1) \exp(\frac{2 \pi i \l^\vee_1}{d}) \in L_{\Pi_1} \rtimes \langle\d \circ \Ad(x_1)\rangle$.
 
@@ -887,22 +886,24 @@ $$
 Then $r^{-1} n(x)\exp(2 \pi i v) r = n(x) \exp(2\pi i\frac{1}{d}\sum_{i=0}^{d-1} x^i(v))$ as desired.
 \end{proof}
 
-\subsection{Analysis of the element $n(\d_1)$}
+\subsection{Analysis of the element $n(\d_1)$}\label{5.3}
 
 We first show that
 
 \begin{lemma}
-	Let $\Delta'=\{\a \in \Delta; \langle\a, V^{\d_1}\rangle=0\}$ and let $V'$ be the subspace of $V$ spanned by $\Delta'$. Then $V(\d_1, \th_1)$ contains a generic element of $V'$ with respect to the root system $\Delta'$.
+	Let $\Delta'=\{\a \in \Delta; \langle\a, V^{\d_1}\rangle=0\}$ and let $V'$ be the subspace of $V$ spanned by $\Delta'$. Then no roots in $\Delta'$ vanishes identically on $V(\d_1, \th_1)$.
 \end{lemma}
 \begin{proof}
-	Let $\a \in \Delta'$. We have to show that $\langle\a, V(\d_1, \th_1)\rangle \neq \{0\}$. Assume otherwise. Then $\a \in \Delta_1$ since $V(w, \th_1) \subseteq V(\d_1, \th_1)$. On the other hand, as $\d_1(\Delta_1^+) = \Delta_1^+$, we have $\rho_1^\vee \in V^{\d_1}$. So $\langle\a, \rho_1^\vee \rangle = 0$, which is impossible. The proof is finished.
+	Let $\a \in \Delta'$. We have to show that $\langle\a, V(\d_1, \th_1)\rangle \neq \{0\}$. Assume otherwise. Since $\d_1=w (x_2 \cdots x_k) \i$ and $x_2 \cdots x_k \in W_1$ fixes each point of $V(w, \th_1)$, we have $V(w, \th_1) \subseteq V(\d_1, \th_1)$. In particular, $\a \in \Delta_1$. On the other hand, as $\d_1(\Delta_1^+) = \Delta_1^+$, we have $\rho_1^\vee \in V^{\d_1}$. So $\langle\a, \rho_1^\vee \rangle = 0$, which is impossible. The proof is finished.
 \end{proof}
 
-Although $\d_1$ is ``regular'' with respect to $V'$, $n(\d_1)$ is not conjugate to $\d \exp(i \th_1 {\rho'}^\vee)$, where ${\rho'}^\vee=\sum_{\a \in {\Delta'}^+} \a^\vee$. In order to determine the element in $T \d$ that is conjugate to $n(\d_1)$, we first conjugate $\d_1$ to an element in a standard parabolic subgroup of $W$.
+%Although $\d_1$ is ``regular'' with respect to $V'$, $n(\d_1)$ is not conjugate to $\d \exp(i \th_1 {\rho'}^\vee)$, where ${\rho'}^\vee=\sum_{\a \in {\Delta'}^+} \a^\vee$. 
 
-By the algorithm and Lemma \ref{dom}, $\l_1^\vee$ is $\Pi_1$-dominant and is in $V^{\d_1}$. Set $\phi_1^\vee = \l_1^\vee + \frac{d \th_1}{2 \pi}\rho_1^\vee \in V^x$. Then $\phi_1^\vee$ is also $\Pi_1$-dominant and is in $V^{\d_1}$.
+In order to determine the element in $T \d$ that is conjugate to $n(\d_1)$, we first conjugate $\d_1$ to an element in a standard parabolic subgroup of $W$.
 
-Let $v$ be a general point of $V^{\d_1}$ lying in a sufficiently small neighborhood of $\phi_1^\vee$. As $\phi_1^\vee \in V^{\d_1}$ is $\Pi_1$-dominant and that the (open) $\Pi_1$-dominant chamber intersects $V^{\d_1}$, we can assume further that $v$ is also strictly $\Pi_1$-dominant. Let $z \in W_0$ be the (unique) minimal element such that $z\i(v) = \bar v$, the unique dominant $W_0$-conjugate of $v$. By the choice of $v$, we have $z^{-1}(\l_1^\vee)=\overline{\l_1^\vee}$. Let $K=\{\a \in \Pi; \langle\a, \bar v\rangle=0\}$ and $y = z^{-1} \d_1 z$. As $y(\bar v)=\bar v$, we have $\d(\bar v)=\bar v$. This means that $y \in W_K \d$ and $\d(K)=K$. Similarly, we have $\overline{\phi_1^\vee} = \d(\overline{\phi_1^\vee})$.
+By the inductive hypothesis for the triple $(\Delta_1, \d_1, w)$ and Lemma \ref{dom}, $\l_1^\vee$ is $\Pi_1$-dominant and is in $V^{\d_1}$. Set $\phi_1^\vee = \l_1^\vee + \frac{d \th_1}{2 \pi}\rho_1^\vee \in V^{\d_1}$. Then $\phi_1^\vee$ is also $\Pi_1$-dominant and is in $V^{\d_1}$.
+
+Let $v$ be a general point of $V^{\d_1}$, that is, if $\langle\a, v\rangle=0$ for some root $\a \in \Delta$, then $\langle\a, V^{\d_1}\rangle=0$. Moreover, we may assume that $v$ lies in a sufficiently small neighborhood of $\phi_1^\vee$. As $\phi_1^\vee \in V^{\d_1}$ is $\Pi_1$-dominant and that the (open) $\Pi_1$-dominant chamber intersects $V^{\d_1}$, we can assume further that $v$ is also strictly $\Pi_1$-dominant. Let $z \in W_0$ be the (unique) minimal element such that $z\i(v) = \bar v$, the unique dominant $W_0$-conjugate of $v$. By the choice of $v$, we have $z^{-1}(\l_1^\vee)=\overline{\l_1^\vee}$. Let $K=\{\a \in \Pi; \langle\a, \bar v\rangle=0\}$ and $y = z^{-1} \d_1 z$. As $y(\bar v)=\bar v$, we have $\d(\bar v)=\bar v$. This means that $y \in W_K \d$ and $\d(K)=K$. Similarly, we have $\overline{\phi_1^\vee} = \d(\overline{\phi_1^\vee})$.
 
 Notice that $\ell(z y)=\ell(z) + \ell(y)$. By Lemma \ref{factor} one has
 \begin{align*}
@@ -984,11 +985,11 @@ Notice that the acute arc $(v_i', v_{i+1}')$ is of angle $0 < \th_1 < \pi$. It f
 \end{exampleplain}
 
 \subsection{Proof of Theorem \ref{t:main}}
-By the inductive hypothesis, $n(w)$ is conjugate to $n(\d_1) \exp(\frac{2 \pi i \phi_1^\vee}{d})$ and hence conjugate to $n(z)^{-1} n(\d_1) \exp(\frac{2 \pi i \phi_1^\vee}{d}) n(z)$.
+We argue by induction on the triple $(\Delta, \d, w)$. If $\Delta=\emptyset$, then the statement is trivial. Suppose that $\Delta \neq \emptyset$ and that the statement is true for any triple $(\Delta'', \d'', w'')$ with $|\Delta''|<|\Delta|$. Then by induction for $(\Delta_1, \d_1, w)$, $n(w)$ is conjugate to $n(\d_1) \exp(\frac{2 \pi i \phi_1^\vee}{d})$ and hence conjugate to $n(z)^{-1} n(\d_1) \exp(\frac{2 \pi i \phi_1^\vee}{d}) n(z)$.
 
-We have $$n(z)^{-1} n(\d_1) \exp(\frac{2 \pi i \phi_1^\vee}{d}) n(z)=n(y) t \exp(\frac{2 \pi i z^{-1}(\phi_1^\vee)}{d}),$$ where
+By the computation in Section \ref{5.3}, we have $$n(z)^{-1} n(\d_1) \exp(\frac{2 \pi i \phi_1^\vee}{d}) n(z)=n(y) t \exp(\frac{2 \pi i z^{-1}(\phi_1^\vee)}{d}),$$ where
 $t=\exp (\pi i\sum_{\b \in \Delta^+ \cap z(\Delta^-) \cap \d_1 \i(\Delta^-)} z^{-1}(\b^\vee))$.
-By Lemma \ref{tech}, with $c=\frac{d\theta_1}{2\pi}$ as in Lemma \ref{tech}, we have
+By Lemma \ref{tech}, with $c=\frac{d\theta_1}{2\pi}$ we have
 $$
 \prod_{0 \le j \le d-1} y^j(t)=\exp(2\pi i c (\rho^\vee-z^{-1}(\rho_{\Pi_1}^\vee)-\rho_K^\vee)).
 $$
