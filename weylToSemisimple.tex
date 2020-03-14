@@ -280,7 +280,7 @@ We have the exact sequence
 1\rightarrow T\rightarrow N(T)\overset p\rightarrow W\rightarrow 1.
 \end{equation}
 In \cite{AH} we considered the question of whether this sequence splits,
-and more generally if $w\in W$, what can be said about the order of $p\inv(w)$.
+and more generally if $w\in W$, what can be said about the orders of elements of $p\inv(w)$.
 Here we consider a related problem.
 
 Let $\Wconj$ be the set of conjugacy classes in $W$. Let $\Gss$ be the
@@ -289,33 +289,40 @@ conjugacy classes. We have $N(T)\subset \Gss$. For $w\in W$ write $[w]$ for the 
 class of $w\in W$. Similarly for $g\in \Gss$ let $[g]$ be the
 $G$-conjugacy class of $g$.
 
-Suppose $w\in W$ and $n(w)\in p\inv(w)\in N(T)$. For general $w$ there
-are many choices of $n(w)$, even up to conjugacy.  However in an
-important special case the choice of $n(w)$ is unique up to
+Suppose $w\in W$ and $n_w\in p\inv(w)\in N(T)$. For general $w$ there
+are many choices of $n_w$, even up to conjugacy.  However in an
+important special case the choice of $n_w$ is unique up to
 conjugation. We say $w\in W$ is {\it elliptic} if it has no nontrivial fixed
 vectors in the reflection representation.  It is well known that if
 $w$ is elliptic then any two elements of $p\inv(w)\subset N(T)$ are
-$T$-conjugate (see Lemma \ref{l:conjugate}). \remind{As $n(w)$ is used in section 5 as Tits lifting, it is better to change to a different symbol here}
+$T$-conjugate (see Lemma \ref{l:conjugate}). 
 
 \begin{definition}
 \label{d:basic}
 Suppose $w\in W$ is elliptic.
-Choose $n(w)\in p\inv(w)\subset N(T)$, and define
+Choose $n_w\in p\inv(w)\subset N(T)$, and define
 $$
-\Psi: \Weconj\rightarrow\Gssconj: [w]\rightarrow [n(w)].
+\Psi: \Weconj\rightarrow\Gssconj: [w]\rightarrow [n_w].
 $$
 This map is well defined on the level of conjugacy classes by Lemma \ref{l:conjugate}.
 \end{definition}
 
+
 This map has been studied by many people, including Reeder
-\cite{reeder_torsion} and Gross-Levy-Reeder-Yu \cite{rgly}, for
+\cite{reeder_torsion} and Reeder-Levy-Yu-Gross \cite{rgly}, for
 applications to representations of $p$-adic groups and number theory.
-Some tables for simply laced groups, obtained by case-by-case
-calculations are in Bouwknegt \cite{bouwknegt}.  Our main result is a
-uniform algorithm to compute this map. We give this algorithm in the
-next section, after first discussing the twisted case. We use the
-algorithm to compute complete tables for the (twisted and untwisted) exceptional
-groups.
+For the exceptional groups the map $\Psi$ has been computed using
+case-by-case calculations: the papers \cite{levy_exceptional}, \cite{bouwknegt}
+and \cite{rgly} cover all cases, with some overlaps, and include other
+information. The main result of this paper is a uniform algorithm to compute
+the map $\Psi$ which is free of any case-by-case considerations.
+
+We give this algorithm in the next section, after first discussing the
+twisted case. We have implemented the algorithm in the {\it Atlas of
+  Lie groups and Representations} software \cite{atlas_software} (see
+the file {\tt weyltosemisimple.at}). It can be used to compute $\Psi$
+for any semisimple group, and Section \ref{s:tables} includes  complete tables for the
+(twisted and untwisted) exceptional groups.
 
 \subsec{The twisted case}
 \label{s:twisted}
@@ -360,6 +367,8 @@ $[(G\delta)^{\ss}]$ for the $G$-conjugacy classes of semisimple
 elements in $G\delta$.  As in the case of $\Wext$, two elements of
 $G\delta$ are $G$-conjugate if and only if they are $\Gext$-conjugate.
 
+The following Lemma is well known. For example see \cite[Remark 4.1.1]{debacker_reeder}.
+
 \begin{lemma}
 \label{l:conjugate}
 Suppose $w\in W\delta$ is elliptic.
@@ -367,6 +376,7 @@ Then any two
 elements of $p\inv(w)\subset\Norm_{\Gext}(T)$ are $T$-conjugate.
 \end{lemma}
 
+\begin{comment}
 \begin{proof}
 Suppose $g\in p\inv(w)\subset \Norm_G(T)\delta$. 
 Then for $t\in T$
@@ -380,18 +390,19 @@ Now suppose $g_1,g_2\in p\inv(w)$.
 Since $w\in W\delta$, $g_1,g_2\in G\delta$. Write $g_1=h_1\delta,g_2=h_2\delta$ with $h_1,h_2\in G$.
 By the previous discussion choose $t$ so that $tw(t\inv)=h_2h_1\inv$. Then $tg_1t\inv=g_2$.
 \end{proof}
+\end{comment}
 
 \begin{definition}
  \label{d:basictwisted}
 Suppose $w\in W\delta$ is elliptic.
-Choose $n(w)\in p\inv(w)\subset \Norm_G(T)\delta$, and define
+Choose $n_w\in p\inv(w)\subset \Norm_G(T)\delta$, and define
 $$
-\Psi: [(W\delta)^\e]\rightarrow[(G\delta)^{\ss}]: [w]\rightarrow [n(w)].
+\Psi: [(W\delta)^\e]\rightarrow[(G\delta)^{\ss}]: [w]\rightarrow [n_w].
 $$
 This map is well defined on the level of conjugacy classes by Lemma \ref{l:conjugate}.
 \end{definition}
 
-If $w\in W\delta$ is not elliptic then the lifts $n(w)$ are not all $G$-conjugate. Nevertheless
+If $w\in W\delta$ is not elliptic then the lifts $n_w$ are not all $G$-conjugate. Nevertheless
 by realizing $w$ as an elliptic element in a Levi subgroup one can define a canonical map
 from $[(W\delta)^\e]$ to $[(G\delta)^{\ss}]$. See Section \ref{s:nonelliptic}.
 
@@ -400,18 +411,18 @@ algebraically closed field of characteristic $0$, and in general with
 a weak restriction on the characteristic. See Remark
 \ref{r:otherfield}.
 
-The tables in Section \ref{s:tables} were calculated using the
-{\it atlas of Lie groups and representations} software \cite{atlas_software} (see the file {\tt weyltosemisimple.at}).
-
-The authors thank Tom Haines for numerous helpful discussions.
+The authors thank Tom Haines for numerous helpful discussions and thank the referee for their suggestions and comments. 
 
 \sec{The Algorithm}
 \label{const}
 
 Assume $G$ is a semisimple reductive group defined over $\C$, and
 $\delta$ is an automorphism of $G$ of finite order. We fix a pinning
-$(G,T,\{X_\alpha\mid\alpha\in\pi\})$, and we may assume $\delta$
-preserves this pinning.  Other notation is as in Section \ref{s:twisted}.
+$(G,T,\{X_\alpha\mid\alpha\in\pi\})$ that is preserved by $\d$. As in Section \ref{s:twisted}.  We write $\Delta$ for
+the root system and $V=\Q\langle\Delta\rangle$.  Write $\ch\alpha$ for
+the coroot associated to $\alpha\in\Delta$, $\ch\Delta$ the set of
+coroots, and $\ch V_\Q=\Q\langle\ch\Delta\rangle$.
+Write $\langle\,,\,\rangle$ for the canonical pairing between $\ch V$ and $V$.
 
 Suppose $w\in \Wext$. Let
 \begin{subequations}
@@ -423,7 +434,7 @@ Suppose $w\in \Wext$. Let
 Write
 \begin{equation}
 \label{e:thetas}
-\Gamma_w=\{\theta_1,\theta_2,\dots,\theta_k\}\text{ with }\theta_1<\theta_2<\dots<\theta_k.
+\Gamma_w=\{\theta_1,\theta_2,\dots,\theta_k\}\text{ with }0\le \theta_1<\theta_2<\dots<\theta_k\le\pi.
 \end{equation}
 For $\theta\in \Gamma_w$ let
 \begin{equation}
@@ -436,14 +447,15 @@ For $1 \le i \le k$ set
 $$
 F_i=\sum_{j=1}^i V(w,\theta_j)
 $$
-and set $F_0=0,\theta_0=0$. We have a filtration
+and set $F_0=0,\theta_0=0$. This gives a filtration
 \begin{equation}
 \label{e:F_k}
-0=F_0\subsetneqq F_1\dots \subsetneqq \dots\subsetneqq F_{k}=V
+0=F_0\subsetneqq F_1 \subsetneqq \dots\subsetneqq F_{k}=V
 \end{equation}
-with strict containments. For $0 \le i \le k$, set
+with strict containments.
+For $0 \le i \le k$, set
 \begin{equation}
-\Delta_i=\{\alpha\in\Delta\mid \langle\alpha,F_i\rangle=0\}.
+\Delta_i=\{\alpha\in\Delta\mid \langle\ch\alpha,F_i\rangle=0\}.
 \end{equation}
 Then each $\Delta_i$ is a root system, and set
 \begin{equation}
@@ -458,9 +470,9 @@ W&=W_0\supseteq W_1\supseteq \dots\supseteq W_k=\{1\}.\\
 \end{aligned}
 \end{equation}
 
-After conjugating by $W$ we assume furthermore that all the $\Delta_i$ are
-standard, i.e., the corresponding Levi subgroups are standard Levi
-subgroups \cite{he_nie_minimal_finite}*{Lemma 5.1}).
+By \cite{he_nie_minimal_finite}*{Lemma 5.1} after conjugating by $W$
+we may assume  that all the $\Delta_i$ are standard, i.e., the
+corresponding Levi subgroups are standard Levi subgroups.
 
 For each $i$ set
 \begin{equation}
@@ -471,24 +483,24 @@ For each $i$ set
 \end{equation}
 We define rational coweights
 $\{\ch\lambda_0,\dots, \ch\lambda_{k}\}$ by downward induction.
-Set $\ch\lambda_k=0$, and for $0\le i\le k-1$ define
-\begin{equation}
+Set $\ch\lambda_k=0$, and for $0\le j\le k-1$ define
+\begin{equation}\label{def-1}
 \begin{aligned}
-\ch\lambda_{i}=\frac{d(\theta_{i+1}-\theta_{i})}{2\pi}\ch\rho_i+\overline{\ch\lambda_{i+1}},
+\ch\lambda_{j}=\frac{d(\theta_{j+1}-\theta_{j})}{2\pi}\ch\rho_j+\overline{\ch\lambda_{j+1}},
 \end{aligned}
 \end{equation}
-where $d$ is the order of $w$, $\overline{\ch\lambda_{i+1}}$ is the element in the $W_i$-orbit of $\ch\lambda_{i+1}$ which is dominant for $\Delta^+_i$.
+where $d$ is the order of $w$, $\overline{\ch\lambda_{j+1}}$ is the element in the $W_j$-orbit of $\ch\lambda_{j+1}$ which is dominant for $\Delta^+_j$.
 \end{subequations}
 
 \begin{theorem}
 \label{t:main}
 Suppose $w\in W\delta$ is of order $d$. Construct $\ch\lambda_0$ by the algorithm. Then
-some lift $n(w)$ of $w$ is $G$-conjugate to $\exp(2\pi i\ch\lambda_0/d)\delta$.
+some lift $n_w$ of $w$ is $G$-conjugate to $\exp(2\pi \sqrt{-1}\ch\lambda_0/d)\delta$.
 
 In particular if $w\in (W\delta)^e$ then 
 \begin{equation}
   \label{e:main}
-  \Psi([w])=[\exp(2\pi i\ch\lambda_0/d)\delta].
+  \Psi([w])=[\exp(2\pi \sqrt{-1}\ch\lambda_0/d)\delta].
 \end{equation}
 \end{theorem}
 
@@ -498,20 +510,27 @@ The algorithm  uses the full sequence $(\th_1, \ldots, \th_k)$.
 One may replace the full sequence by any subsequence that is
 admissible in the sense of \cite{he_nie_minimal_finite}*{subsection
   5.2}.  The proof of the Theorem applies with no change in this
-generality. The element $\exp(2\pi i\ch\lambda_0/d)\delta \in \Gext$ is
+generality. The element $\exp(2\pi \sqrt{-1}\ch\lambda_0/d)\delta \in \Gext$ 
 obtained from an admissible subsequence of $(\th_1, \ldots, \th_k)$
 is, in general, different from the element obtained here using the
-full sequence. However by the Theorem these elements are all
-conjugate. %See example \ref{eg:regular}.
+full sequence.
+% See comment from the referee: since the Theorem applies,
+% these elements (giving the same elliptic class) are all conjugate
+%but never mind
+%However by the Theorem these elements are all conjugate.
 \end{remarkplain}
 
-We will use the following conjugacy result\footnote{We thank Dipendra Prasad for bringing this result to our attention.}.
+We will use the following well-known conjugacy result \cite{serre_linear}*{Chapter 13, Prop. 2.5}.
+We include a proof since it plays a role in the subsequent Proposition.
+
 
 \begin{proposition}
-Suppose $G$ is a finite group all of whose characters are defined over $\Q$. 
+Suppose $G$ is a finite group all of whose characters take values in $\Q$. 
 Suppose $g\in G$ has order $d$. If $(d,k)=1$ then 
  $g^k$ is conjugate to $g$.
 \end{proposition}
+
+It is well known that all representations of Weyl take integral values \cite{springer_regular}*{Theorem 8.5}.
 
 \medskip
 
@@ -584,14 +603,16 @@ $\zeta_{dm}$.
 
 The algorithm in Section \ref{const} is  motivated in part by
 the construction of the good elements in a given conjugacy class of
-$\Wext$. In this section, we discuss this
-construction.
-
+$\Wext$.
 The good elements in $W$ were introduced by Geck and Michel in
 \cite{geck_michel_good} and the notion was generalized to $\Wext$ by Geck, Kim and
 Pfeiffer in \cite{gkp}.
+In this section we discuss this
+construction.
 
-Let $B^+$ be the braid monoid associated with $(W,S)$. Then there is a
+
+
+Let $B^+$ be the braid monoid associated with $(W,S)$. There is a
 canonical injection $j:W\longrightarrow B^+$ identifying the
 generators of $W$ with the generators of $B^+$ and
 satisfying $j(w_1w_2)=j(w_1)j(w_2)$ for $w_1,w_2\in W$ whenever
@@ -640,22 +661,30 @@ set of minimal length representatives in $W/W_i$ (resp. in $W_i \backslash W$). 
 
 \begin{proposition}\label{good-fac} Let $w \in W \d \subset
 \Wext$. Suppose that the dominant chamber is in good position with
-respect to $w$. Then $$w=\d x_1 x_2 \cdots x_k,$$ where for $1 \le i
-\le k$, we have $x_i \in W_{i-1} \cap W^{\Pi_i}$ and $\d_i=\d x_1
-\cdots x_{i}$ such that $\d_i (\Pi_i)=\Pi_i$.
+respect to $w$. Then there are $x_i\in W$ $(1\le i\le k)$ so that 
+$$
+w=\d x_1 x_2 \cdots x_k,
+$$ where for $1 \le i
+\le k$, we have $x_i \in W_{i-1} \cap W^{\Pi_i}$.
+
+Furthermore
+$$
+(\d x_1\cdots x_i)(\Pi_i)=\Pi_i\quad (1\le i\le k).
+$$
+
 \end{proposition}
 
 The following result is proved in \cite{he_nie_minimal_finite}*{Theorem 5.3}.
 
 \begin{theorem}
 \label{t:braid}
-Let $w \in \Wext$ such that the fundamental chamber is
+Suppose $w \in \Wext$, and the fundamental chamber is
 in good position with $w$. Then we have the following equality in the
 Braid monoid associated with $(W, S)$: $$\underline w^d=\underline
 w_0^{d \theta_1/\pi} \underline w_1^{d (\theta_2-\theta_1)/\pi} \cdots
 \underline w_{k-1}^{d (\theta_{k}-\theta_{k-1})/\pi},$$ where $d$ is
 the order of $w$ in $\Wext$, $(\theta_1, \cdots,
-\theta_k)$ is the sequence consisting of all the elements in $\G_{w}$
+\theta_k)$ is the sequence consisting of the elements in $\G_{w}$
 and $w_i$ is the maximal element in the standard parabolic subgroup
 $W_i$.
 \end{theorem}
@@ -672,8 +701,9 @@ regular eigenvector. We say $w$ is {\it $d$-regular} if the corresponding eigenv
 order $d$ ($d$ turns out to be independent of the choice of regular eigenvector).
 Following \cite{rgly} we say
 element $w$ is {\it $\mathbb Z$-regular} if $\langle w\rangle$ acts freely
-on $\Delta$. The following result is proved in \cite[Prop. 1]{rgly}, see also \cite{AH}*{Lemma 7.2}.
+on $\Delta$. It is proved in \cite[Prop. 1]{rgly} that $\mathbb Z$-regularity implies regularity. The converse does not hold in general. %The following result is proved in \cite[Prop. 1]{rgly}, see also \cite{AH}*{Lemma 7.2}.
 
+\begin{comment}
 \begin{lemma} Suppose $w\in W\delta$ is $d$-regular.  Then
 $o(w)=\text{lcm}(o(\delta),d)$.  The following conditions are
 equivalent:
@@ -683,20 +713,23 @@ equivalent:
 		\item $w$ is $\mathbb Z$-regular.
 	\end{enumerate}
 \end{lemma}
+In particular if $w$ is regular then it is $d$-regular for some $d$,  and if $\delta=\text{id}$ the converse holds.
+The converse does not hold in general.  See \cite{rgly}*{after Proposition 1}.
+\end{comment}
 
-In particular if $w$ is $\Z$-regular then it is $d$-regular for some $d$, and if $\delta=\text{id}$ the converse holds.
-The converse does not hold in general. %:in type ${}^2 E_6$, the elements with characteristic polynomial $\Phi_6 \Phi_3^2$ are of order $6$ and are $3$-regular (see \cite{springer_regular}*{Table 8}), but not $\Z$-regular. (This is the only exception in a simple group.)
+%The next Proposition is in \cite{rgly}*{Prop. 12}. We include the proof since some of the ideas will be used again in the next section.
 
 \begin{proposition}\label{regular} Suppose $w \in W\d$ is elliptic and
 regular. Let $\theta \in \G_w$ such that $V(w, \theta)$ contains a
-regular vector of $V$. Then $[n(w)]=[\exp(i \theta\rho^\vee)\delta]$.
+regular vector of $V$. Then $[n_w]=[\exp(\sqrt{-1} \theta\rho^\vee)\delta]$.
 \end{proposition}
+
 \begin{remark}
-The case where $w$ is $\mathbb Z$-regular is proved in \cite{rgly}*{Prop. 12}. 
+	The case where $w$ is $\mathbb Z$-regular is proved in \cite{rgly}*{Prop. 12}.
 \end{remark}
 
-\begin{proof} Let $\zeta=\exp(i \theta)$ and let
-$\t=\delta \exp(i \theta \rho^\vee)=\delta \rho^\vee(\zeta)$. Let $d,m$ be
+\begin{proof} Let $\zeta=\exp(\sqrt{-1} \theta)$ and let
+$\t=\delta \exp(\sqrt{-1} \theta \rho^\vee)=\delta \rho^\vee(\zeta)$. Let $d,m$ be
 the orders of $\zeta \in \mathbb C^\times$ and $\t$ respectively.
 Let $\xi$ be a primitive $m$-th root of unity such that
 $\zeta=\xi^{m/d}$. We set $\iota=\tau^d=\delta^d$. Let $\fg, \ft$ be
@@ -721,22 +754,22 @@ be the centralizer of $\fs'$ in $\fg$. As $\fs'$ is conjugate to
 $\ft^\iota$, $\fs$ is also a Cartan subalgebra of $\fg$ fixed by
 $\t$. Let $g \in G$ such that $\ft=\Ad(g) \fs$, and set $\varepsilon=g
 \t g\i$. Then $\varepsilon \in G \d$ fixes $\ft$ and lies in $N \d$,
-where $N$ is the normalizer of $T$ in $G$. Let $\ft(n(w), \z)$ and
-$\ft(\varepsilon, \z)$ be the $\z$-eigenspaces of $\ft$ for $n(w)$ and
+where $N$ is the normalizer of $T$ in $G$. Let $\ft(n_w, \z)$ and
+$\ft(\varepsilon, \z)$ be the $\z$-eigenspaces of $\ft$ for $n_w$ and
 $\varepsilon$ respectively. Thanks to
 \cite{springer_regular}*{Theorem 6.4 (iv)} and
-the ellipticity of $w$, to show $n(w)$ and $\varepsilon$ are conjugate,
-it suffices to show $$\dim \ft(n(w), \z)= \dim \ft(\varepsilon, \z).$$
+the ellipticity of $w$, to show $n_w$ and $\varepsilon$ are conjugate,
+it suffices to show $$\dim \ft(n_w, \z)= \dim \ft(\varepsilon, \z).$$
 Notice that $\ft(\varepsilon, \z)=\Ad(g) \fc'$.
 	
 	Let $v \in V(w, \theta)$ be a regular point. We may assume
 that $v$ is (strictly) dominant. Since $w^d(v)=v$ and $v$ is strictly
 dominant, one has $w^d=\d^d=\iota$ and hence $w \in W^\iota \d$, where
 $W^\iota$ is the subgroup of $\iota$-fixed points of $W$. Notice that
-$\ft(n(w), \z)=\ft^\iota(n(w), \z)$ and that $W^\iota$ is the Weyl group
-of $\ft^\iota$ in $\fg^\iota$, where $\ft^\iota(n(w), \z)$ is the
-$\z$-eigenspace of $\ft^\iota$ for $n(w)$. Then
-\cite{springer_regular}*{Theorem 6.4 (ii)} says $$\dim \ft(n(w), \z) = \dim \ft^\iota(n(w), \z)=
+$\ft(n_w, \z)=\ft^\iota(n_w, \z)$ and that $W^\iota$ is the Weyl group
+of $\ft^\iota$ in $\fg^\iota$, where $\ft^\iota(n_w, \z)$ is the
+$\z$-eigenspace of $\ft^\iota$ for $n_w$. Then
+\cite{springer_regular}*{Theorem 6.4 (ii)} says $$\dim \ft(n_w, \z) = \dim \ft^\iota(n_w, \z)=
 a(d, \d),$$ where $a(d, \d)$ is defined in
 \cite{springer_regular}*{Section 6} with
 respect to $W^\iota$ and $\d$.
@@ -750,7 +783,7 @@ d\mathbb Z} \fg^\iota_i$, one deduces that $$\dim \ft(\varepsilon, \z)
 \begin{corollary}
 Suppose $w\in W\delta$ is elliptic and $d$-regular. Then
 $$
-[n(w)]=[\exp(2\pi i\ch\rho/d)\delta].
+[n_w]=[\exp(2\pi \sqrt{-1}\ch\rho/d)\delta].
 $$
 \end{corollary}
 
@@ -805,22 +838,31 @@ So $t$ is conjugate to $t'$.
 \bigskip
 \end{comment}
 
-\sec{The inductive step}
+\sec{The General Case}
+\label{s:general}
 
-\subsection{The element $\l_0^\vee$ is $\d$-stable}
-Assume that the dominant chamber $\caC$ is in good position with
-$w$. Let $w=\d x_1 x_2 \cdots x_k$ be the good factorization of $w$ as
-in Proposition \ref{good-fac}. We first show that the coweight
-$\l_0^\vee$ we constructed in section \ref{const} is fixed by $\d$.
+We prove Theorem \ref{t:main}. We first collect some facts needed for the proof.
+
+Suppose $w\in \Wext$ and the dominant chamber $\caC$ is in good position with
+$w$ (see Section \ref{s:digression}). Let $w=\d x_1 x_2 \cdots x_k$ be the good factorization of $w$ as
+in Proposition \ref{good-fac}, and define $\Delta_i,W_i,\ch\lambda_i$
+$(0\le i\le k)$ as in \eqref{e:algorithm}(e-i).
+Also define $\delta_0=\delta$ and 
+$$
+\delta_i=\delta x_1\dots x_i\quad(1\le i\le k).
+$$
+Recall (Proposition \ref{good-fac}) $\delta_i(\Pi_i)=\Pi_i$ $(0\le i\le k)$.
+
+
 
 \begin{lemma} \label{dom}
-	We have $\l_0^\vee =\delta (\l_0^\vee)$.
+For all $0\le i\le k$ we have
+$\delta_i(\ch\lambda_i)=\ch\lambda_i$. In particular $\delta(\ch\lambda_0)=\ch\lambda_0$.
 \end{lemma}
-\begin{proof}
 
-  Recall (Proposition \ref{good-fac})  $\d_i=\delta x_1 \cdots x_{i}$. We show by induction that
-  $\d_{i}(\l^\vee_{i})=\l^\vee_{i}$ for $0 \le i \le k$. If $i=k$,
-  then $\l_k^\vee = 0$ and the statement is obvious. Assume
+\begin{proof}
+We proceed by downward induction on $i$. If $i=k$ then $\ch\lambda_i=0$ so there is nothing to prove.
+Assume
   $\d_{i+1}(\l_{i+1}^\vee) = \l_{i+1}^\vee$ for some
   $0 \le i \le k-1$. We prove $\d_i(\l_i^\vee)=\l_i^\vee$. Since
   $\d_{i}(\Delta_i^+)=\Delta_i^+$, we
@@ -832,91 +874,124 @@ $\l_0^\vee$ we constructed in section \ref{const} is fixed by $\d$.
   (\overline{\l_{i+1}^\vee}).$$ Note that
   $y_i \d_i x_{i+1} y_i^{-1} \in W_i\delta_i$ and that
   $\overline{\l_{i+1}^\vee}$ is dominant for $\Delta_i^+$. Therefore,
-  $\d_i$ fixes $\overline{\l_{i+1}^\vee}$ and hence also fixes
+  $\d_i$ fixes $\overline{\l_{i+1}^\vee}$ and by \eqref{e:algorithm}(i) also fixes
   $\l_i^\vee$ as desired.
 \end{proof}
 
-\subsection{The lifting $n(x)$}\label{setup}
-
-We prove the main result using the induction argument for the triple $(\Delta, \d, w)$ with $w$ an element in $W(\Delta) \d$. 
-
-We may regard $\delta\circ\Ad(x_1)$ as an automorphism of $W_1$ and of
-the Levi subgroup $L_{\Pi_1}$ associated to $\Pi_1$. Then
-$\d_1 x_2 \cdots x_k$ is an element of
-$W_1 \rtimes \langle\d \circ \Ad(x_1)\rangle$. Thus by the inductive
-hypothesis on $(\Delta_1, \d_1, w)$, we have that
-
-(a) $n(w)$ is conjugate to $n(\d_1) \exp(\frac{2 \pi i \l^\vee_1}{d}) \in L_{\Pi_1} \rtimes \langle\d \circ \Ad(x_1)\rangle$.
-
-In the next step, we would like to conjugate $n(\d_1)$ to an element
-in $T \d$. Note that $\d_1$ is not an elliptic element of ${}^\d W$ in
-general.  Hence the liftings of $\d_1$ are not all conjugate in
-$G$. In particular, the Tits lifting of the elements in the conjugacy
-class of $\d_1$ are not all conjugate in $G$. For the purpose of our
-argument, we fix a set of lifts $n(x) \in N_G(T)$ for $x \in {}^\d W$
-such that
-
-(1) $n(s_\a)^2=\exp(\pi i \a^\vee)$ for $\a \in \Pi$;
-
-(2) $n(x x') = n(x) n(x')$ if $\ell(x x') = \ell(x) + \ell(x')$.
-
-We need a formula for the cycle defined by these lifts.
-
-\begin{lemma} \label{factor}{\cite{ls}*{Lemma 2.1A}}
-Given $x,y\in \Wext$ let
-$$
-\gamma^\vee=\sum_{\b \in \Delta^+ \cap y \i(\Delta^-) \cap y \i x \i (\Delta^+)} \b^\vee.
-$$
-Then
-$$
-n(x)n(y)=\exp(\pi i\gamma^\vee) n(xy)
-$$
-\end{lemma}
-
 
 \begin{lemma} \label{average}
-  Let $x \in W_0 \d$ and  $d \in \mathbb Z_{\ge 1}$ such that $x^d=1$. Let $v\in V$. Then the element $n(x)\exp(2 \pi i v)$ is conjugate to
-  $n(x) \exp(\frac{2 \pi i}{d}\sum_{k=0}^{d-1} x^k(v))$ by an element in $T$.
+  Suppose $x \in W \d$ has order $d$.  Then  for $v\in V$, $n(x)\exp(2 \pi \sqrt{-1} v)$ is conjugate to
+  $n(x) \exp(\frac{2 \pi \sqrt{-1}}{d}\sum_{i=0}^{d-1} x^i(v))$ by an element in $T$.
 \end{lemma}
 \begin{proof}
 Let
 $$
-r=\exp(\frac{2\pi i }{d}\sum_{k=0}^{d-1} k x^{-k}(v)).
+t=\exp(\frac{2\pi \sqrt{-1} }{d}\sum_{k=0}^{d-1} k x^{-k}(v))\in T.
 $$
-Then $r^{-1} n(x)\exp(2 \pi i v) r = n(x) \exp(2\pi i\frac{1}{d}\sum_{i=0}^{d-1} x^i(v))$ as desired.
+Then $t^{-1} n(x)\exp(2 \pi \sqrt{-1} v) t = n(x) \exp(2\pi \sqrt{-1}\frac{1}{d}\sum_{i=0}^{d-1} x^i(v))$ as desired.
 \end{proof}
 
-\subsection{Analysis of the element $n(\d_1)$}\label{5.3}
+Consider the element $\delta_1=\delta x_1$. We may view this as an
+automorphism of $W_1$ and the corresponding Levi subgroup $L_1$.  We
+will need to conjugate $n(\delta_1)$ to an element of $T\delta$.
+Note that $\d_1$ is not necessarily  an elliptic element of ${}^\d W$, so its liftings are not all conjugate in $G$.
+For the purpose of our
+argument, we fix a set of lifts $n(x) \in N_G(T)$ for $x \in {}^\d W$
+such that
 
-We first show that
+(1) $n(s_\a)^2=\exp(\pi \sqrt{-1} \a^\vee)$ for $\a \in \Pi$;
+
+(2) $n(x x') = n(x) n(x')$ if $\ell(x x') = \ell(x) + \ell(x')$.
+
+We need a formula for the cycle defined by these lifts.
+\begin{lemma} \label{factor}{\cite{ls}*{Lemma 2.1A}}
+  Given $x,y\in \Wext$ let
+  $$
+  S=\Delta^+\cap y\inv(\Delta^-)\cap y\inv x\inv(\Delta^+)
+$$
+and
+$$
+\ch\gamma=\sum_{\beta\in S}\ch\beta.
+$$
+Then
+$$
+n(x)n(y)=n(xy)\exp(\pi \sqrt{-1}\gamma^\vee). 
+$$
+\end{lemma}
 
 \begin{lemma}
-	Let $\Delta'=\{\a \in \Delta; \langle\a, V^{\d_1}\rangle=0\}$ and let $V'$ be the subspace of $V$ spanned by $\Delta'$. Then no roots in $\Delta'$ vanishes identically on $V(\d_1, \th_1)$.
+  \label{l:n(z)}
+  Suppose $x,y\in\Wext$ satisfy $\ell(xy)=\ell(x)+\ell(y)$.
+  Let $z=xyx\inv$.  Then
+$$
+n(z)=n(x)n(y)n(x)\inv \exp(\pi \sqrt{-1} \sum_{\beta\in \Delta^+\cap x(\Delta^-)\cap z\inv(\Delta^-)}\ch\beta).
+$$
+  
 \end{lemma}
+
 \begin{proof}
-	Let $\a \in \Delta'$. We have to show that $\langle\a, V(\d_1, \th_1)\rangle \neq \{0\}$. Assume otherwise. Since $\d_1=w (x_2 \cdots x_k) \i$ and $x_2 \cdots x_k \in W_1$ fixes each point of $V(w, \th_1)$, we have $V(w, \th_1) \subseteq V(\d_1, \th_1)$. In particular, $\a \in \Delta_1$. On the other hand, as $\d_1(\Delta_1^+) = \Delta_1^+$, we have $\rho_1^\vee \in V^{\d_1}$. So $\langle\a, \rho_1^\vee \rangle = 0$, which is impossible. The proof is finished.
+By Lemma \ref{factor}
+$$
+\begin{aligned}
+  n(z)&=n(xyx\inv)\\
+  &=n(xy)n(x\inv)\exp(-\pi \sqrt{-1}\sum_{\b \in \Delta^+\cap x(\Delta^-)\cap z\inv(\Delta^+)}\ch\beta)\\
+  &=n(x)n(y)n(x\inv)\exp(-\pi \sqrt{-1}\sum_{\b \in \Delta^+\cap x(\Delta^-)\cap z\inv(\Delta^+)}\ch\beta)\\
+  &=n(x)n(y)n(x\inv)\exp(\pi \sqrt{-1}\sum_{\b \in \Delta^+\cap x(\Delta^-)\cap z\inv(\Delta^-)}\ch\beta).\\
+\end{aligned}
+$$
+The last equality follows from 
+$n(x\inv)=n(x)\inv\exp(\pi \sqrt{-1}\sum_{\b \in \Delta^+\cap x(\Delta^-)}\ch\beta)$, which follows from another application of Lemma \ref{factor}.
 \end{proof}
+
 
 %Although $\d_1$ is ``regular'' with respect to $V'$, $n(\d_1)$ is not conjugate to $\d \exp(i \th_1 {\rho'}^\vee)$, where ${\rho'}^\vee=\sum_{\a \in {\Delta'}^+} \a^\vee$. 
 
-In order to determine the element in $T \d$ that is conjugate to $n(\d_1)$, we first conjugate $\d_1$ to an element in a standard parabolic subgroup of $W$.
-
-By the inductive hypothesis for the triple $(\Delta_1, \d_1, w)$ and Lemma \ref{dom}, $\l_1^\vee$ is $\Pi_1$-dominant and is in $V^{\d_1}$. Set $\phi_1^\vee = \l_1^\vee + \frac{d \th_1}{2 \pi}\rho_1^\vee \in V^{\d_1}$. Then $\phi_1^\vee$ is also $\Pi_1$-dominant and is in $V^{\d_1}$.
-
-Let $v$ be a general point of $V^{\d_1}$, that is, if $\langle\a, v\rangle=0$ for some root $\a \in \Delta$, then $\langle\a, V^{\d_1}\rangle=0$. Moreover, we may assume that $v$ lies in a sufficiently small neighborhood of $\phi_1^\vee$. As $\phi_1^\vee \in V^{\d_1}$ is $\Pi_1$-dominant and that the (open) $\Pi_1$-dominant chamber intersects $V^{\d_1}$, we can assume further that $v$ is also strictly $\Pi_1$-dominant. Let $z \in W_0$ be the (unique) minimal element such that $z\i(v) = \bar v$, the unique dominant $W_0$-conjugate of $v$. By the choice of $v$, we have $z^{-1}(\l_1^\vee)=\overline{\l_1^\vee}$. Let $K=\{\a \in \Pi; \langle\a, \bar v\rangle=0\}$ and $y = z^{-1} \d_1 z$. As $y(\bar v)=\bar v$, we have $\d(\bar v)=\bar v$. This means that $y \in W_K \d$ and $\d(K)=K$. Similarly, we have $\overline{\phi_1^\vee} = \d(\overline{\phi_1^\vee})$.
-
-Notice that $\ell(z y)=\ell(z) + \ell(y)$. By Lemma \ref{factor} one has
-\begin{align*}
-n(\d_1) &= n(z y z^{-1}) \\ &=
-n(z y) n(z^{-1})\exp(-\pi i\sum_{\b \in \Delta^+ \cap z(\Delta^-) \cap \d_1 \i (\Delta^+)}  \b^\vee) \\
-&= n(z) n(y) n(z^{-1}) \exp(-\pi i\sum_{\b \in \Delta^+ \cap z(\Delta^-) \cap \d_1 \i (\Delta^+)} \b^\vee)\\
-&= n(z) n(y) n(z)^{-1}\exp(\pi i\sum_{\b \in \Delta^+ \cap z(\Delta^-) \cap \d_1 \i(\Delta^-)}  \b^\vee),
-\end{align*} where the last equality follows from $$n(z^{-1})=n(z)^{-1}\exp(\pi i\sum_{\b \in \Delta^+ \cap z(\Delta^-)} \b^\vee).$$
-
 \subsection{A technical lemma}
+\label{technical}
+
+In the setting of the beginning of this section, we focus
+our attention on $\Delta_1$, with simple roots $\Pi_1$,  and the element $\delta_1\in \Wext$
+which preserves $\Pi_1$.
+Recall that $L_1$ is the standard Levi subgroup corresponding to $\Pi_1$.
+
+Recall (\ref{e:algorithm}(i)):
+$$
+\ch\l_1=\frac{d(\th_2-\th_1)}{2 \pi}
+\ch\rho_1+\overline{\ch\l_2}.
+$$
+
+We say $v\in V^{\delta_1}$ is a general point of $V^{\delta_1}$ if $\langle\a, v\rangle=0$ for some
+root $\a \in \Delta$, then $\langle\a, V^{\d_1}\rangle=0$.  We can
+find a general point of $V^{\delta_1}$ in a sufficiently small
+neighborhood of $\ch\l_{1}$.  Furthermore, since the (open)
+$\Pi_1$-dominant chamber intersects $V^{\delta_1}$ we may assume $v$
+is strictly $\Pi_1$-dominant.
+Given $v$ let  $z \in W$ be the (unique) minimal element such
+that $z\i(v) = \bar v$, the unique dominant $W$-conjugate of $v$.
+Then $z\inv(\ch\l_{1})=\overline{\ch\l_{1}}$.
+
+Set $y=z\inv\delta_1z$.  Then $y\overline v=\overline v$, and
+(since $\overline v$ is dominant and $\delta$ fixes the dominant
+chamber) $\delta(\overline v)=\overline v$.
+
+Set
+$$
+\Delta'=\{\alpha\in\Delta\mid \langle\alpha,V^{\delta_1}\rangle=0.
+$$
+Then $\Delta'$ is the root system of a Levi factor $L'$; we write $W_{\Delta'}$ for its Weyl group.
+Note that, since $v$ is a general point of $V^{\delta_1}$,  $\Delta'=\{\alpha\in\Delta\mid \langle\alpha,v\rangle=0$.
+Then  (since $\delta(\overline v)=\overline v$), $\delta(\Delta')=\Delta'$. Also $y\in W_{\Delta'}\delta$,
+and by the definition of $z$ we have
+
+\begin{equation}
+\label{e:lengthsadd}
+\ell(zy)=\ell(z)+\ell(y).
+\end{equation}
 
 \begin{lemma} \label{tech}
-Let notation be as above. We have $$\Delta^- - z \i(\Delta_{\Pi_1})-\Delta_K = \cup_{i=0}^{d-1} y^{-i}(\Delta^- \cap z \i(\Delta^+) \cap z \i \d_1 \i(\Delta^-)).$$ Moreover, each root of $\Delta^- - z \i(\Delta_{\Pi_1})-\Delta_K$ lies in exactly $\frac{d \th_1} {2\pi}$ of the sets $y^{-i}(\Delta^- \cap z \i(\Delta^+) \cap z \i \d_1 \i(\Delta^-))$ for $0 \le i \le d-1$.
+Let $d$ be the order of $y$. Then
+$$\Delta^- - z \i(\Delta_{1})-\Delta' = \cup_{i=0}^{d-1} y^{-i}(\Delta^- \cap z \i(\Delta^+) \cap z \i \d_1 \i(\Delta^-)).$$
+Moreover, each root of $\Delta^- - z \i(\Delta_{1})-\Delta'$ lies in exactly $\frac{d \th_1} {2\pi}$ of the sets $y^{-i}(\Delta^- \cap z \i(\Delta^+) \cap z \i \d_1 \i(\Delta^-))$ for $0 \le i \le d-1$.
 \end{lemma}
 \begin{remark}
   The proof uses a similar method of counting root hyperplanes as in
@@ -924,19 +999,32 @@ Let notation be as above. We have $$\Delta^- - z \i(\Delta_{\Pi_1})-\Delta_K = \
 \end{remark}
 
 \begin{proof}
-Recall that $v_0$ is a general point of $V(\d_1, \th_1)$. Then $z \i(v_0)$ is a general point of $V(y, \th_1)$. For $i \in \mathbb Z$, set $v_i'=y^{-i} z^{-1} (v_0)$. Since $V(y, \th_1)_{\mathbb C}$ is the sum of eigenspaces of $y$ of eigenvalues $e^{i\pm \th_1}$,  the points $v_i'$ for $i \in \mathbb Z$ are contained in the subspace $D$ spanned by $v_0'$ and $v_1'$. In particular $\dim D \le 2$.
+Let $v_0$ be a general point of $V(\d_1, \th_1)$.  Then $z \i(v_0)$ is a
+general point of $V(y, \th_1)$. For $i \in \mathbb Z$, set
+$v_i'=y^{-i} z^{-1} (v_0)$. Since $V(y, \th_1)_{\mathbb C}$ is the sum
+of eigenspaces of $y$ of eigenvalues $e^{\pm i\th_1}$, the points
+$v_i'$ for $i \in \mathbb Z$ are contained in the subspace $D$
+spanned by $v_0'$ and $v_1'$. In particular $\dim D \le 2$.
 
-We first consider the case where $\dim D=1$. In this case, we have $\th_1 = \pi$ and hence $w=-1$. Then $\Delta_{\Pi_1} = \emptyset$, $\d_1 = w$, $\Delta_K = \Delta$ and $z=1$. One checks that $\Delta^- - z \i(\Delta_{\Pi_1})-\Delta_K = \emptyset = \Delta^- \cap z \i(\Delta^+) \cap z \i \d_1 \i(\Delta^-)$. So the statement follows.
+We first consider the case where $\dim D=1$. In this case, we have
+$\th_1 = \pi$ and hence $w=-1$. Then $\Delta_{1} = \emptyset$,
+$\d_1 = w$, $\Delta' = \Delta$ and $z=1$. One checks that
+$\Delta^- - z \i(\Delta_{1})-\Delta' = \emptyset = \Delta^- \cap
+z \i(\Delta^+) \cap z \i \d_1 \i(\Delta^-)$. So the statement follows.
 
 Now we consider the case where $\dim D=2$. Let $S \subseteq D$ the circle containing $v_i'$ for $i \in \mathbb Z$. Note that $v_i'=v_j'$ if $(i-j)\th_1/(2\pi) \in \mathbb Z$.
 
 Set $\mathcal B= \Delta^- \cap z \i(\Delta^+) \cap z \i \d_1 \i(\Delta^-)$. Then \[\tag{a}\mathcal B=\{\b \in \Delta^-; H_\b \text{ separates } z^{-1}(\caC) \text{ from } \caC \text{ and } y^{-1} z^{-1}(\caC)\},\] where $\caC$ is the dominant chamber and $H_\b \subseteq V$ denotes the root hyperplane of $\b$.
 
-As $z \in W^K$, $\Delta_K \cap \mathcal B = \emptyset$. Since $y \in W_K \d =\d W_K$, we have $y^{-i}(\mathcal B) \subseteq \Delta^- - \Delta_K$. Let $\b \in y^{-i}(\mathcal B)$. By (a), $H_\b$ separates $y^{-i} z^{-1} \caC$ from $y^{-i-1} z^{-1} \caC$. This means $\b \notin z^{-1}(\Delta_{\Pi_1})$ as $x(\Pi_1)=\Pi_1$. So $$y^{-i}(\mathcal B) \subseteq \Delta^- - z^{-1}(\Delta_{\Pi_1}) -\Delta_K.$$
+By the property that $z$ is of minimal length making $v$ dominant, we see
+$\Delta' \cap \mathcal B = \emptyset$. Since $y \in W' \d =\d W'$, we have $y^{-i}(\mathcal B) \subseteq \Delta^- - \Delta'$. Let $\b \in y^{-i}(\mathcal B)$. By (a), $H_\b$ separates $y^{-i} z^{-1} \caC$ from $y^{-i-1} z^{-1} \caC$. This means $\b \notin z^{-1}(\Delta_{1})$ as
+$\delta_1(\Pi_1)=\Pi_1$.
+%What is x?$x(\Pi_1)=\Pi_1$.
+So $$y^{-i}(\mathcal B) \subseteq \Delta^- - z^{-1}(\Delta_{1}) -\Delta'.$$
 
-Let $\b \in \Delta^- - z^{-1}(\Delta_{\Pi_1}) -\Delta_K$. If $v_k' \in H_\b$ for some $k$, then $z^{-1}(V_{\th_1}) \subseteq H_\b$ since $v_k'=y^{-k} z^{-1}(v_0)$ is a general point of $z^{-1}(V_{\th_1})$. This means $\b \in z^{-1}(\Delta_{\Pi_1})$, a contradiction. So $v_i' \notin H_\b$ for any $i \in \mathbb Z$. Thus, $H_\b \cap S = \{\pm p\}$ for some $p \in S$. Let $S^+, S^-$ be the two connected components of $S - \{\pm p\}=S - H_\b$ such that $\bar v, S^+$ are on the same side of $H_\b$.
+Let $\b \in \Delta^- - z^{-1}(\Delta_{1}) -\Delta'$. If $v_k' \in H_\b$ for some $k$, then $z^{-1}(V_{\th_1}) \subseteq H_\b$ since $v_k'=y^{-k} z^{-1}(v_0)$ is a general point of $z^{-1}(V_{\th_1})$. This means $\b \in z^{-1}(\Delta_{1})$, a contradiction. So $v_i' \notin H_\b$ for any $i \in \mathbb Z$. Thus, $H_\b \cap S = \{\pm p\}$ for some $p \in S$. Let $S^+, S^-$ be the two connected components of $S - \{\pm p\}=S - H_\b$ such that $\bar v, S^+$ are on the same side of $H_\b$.
 
-Let $\overline\caC$ be the closure of $\caC$. Recall that $v$ is a general point of $V^{\d_1}$. As $\b \notin \Delta_K$ and $\bar v \in \overline\caC$, $\bar v \notin H_\b$ and
+Let $\overline\caC$ be the closure of $\caC$. Recall that $v$ is a general point of $V^{\d_1}$. As $\b \notin \Delta'$ and $\bar v \in \overline\caC$, $\bar v \notin H_\b$ and
 
 \noindent(b) $y^{-i}(\bar v)=\bar v, y^{-i}(\caC)$ are on the same side of $H_\b$ for $i \in \mathbb Z$.
 
@@ -981,38 +1069,131 @@ Notice that the acute arc $(v_i', v_{i+1}')$ is of angle $0 < \th_1 < \pi$. It f
 \end{figure}
 
 \begin{exampleplain}
-	Let $W$ be of type $B_3$ and $\Pi=\{1, 2, 3\}$ such that $\a_3$ is the unique short simple root and $s_{13} = s_{31}$. Let $w=s_{12323}$. Then $\th_1 = \pi/2$, $d = 4$ and $w = \d_1 w_1$, where $\d_1 = s_{1232}$, $w_1 = s_3$, $\Pi_1=\{3\}$ and $V^{\d_1} = \mathbb R \a_3$. As in \ref{setup}, we take $v = \a_3$. Hence $z = s_{21}$, $y = s_{23}$ and $K=\{2, 3\}$. One checks that each root of $\Delta^- - z\i(\Delta_{\Pi_1}) - \Delta_K=\{-(\a_1), -(\a_1+\a_2), -(\a_1+\a_2+2 \a_3), -(\a_1+2 \a_2+2 \a_3)\}$ appears exactly one of the sets $\{-y^i(\a_1+\a_2)\}$ for $0 \le i \le 3$.
+  Let $W$ be of type $B_3$ and $\Pi=\{1, 2, 3\}$ such that $\a_3$ is the unique short simple root and $s_{13} = s_{31}$. Let $w=s_{12323}$. Then $\th_1 = \pi/2$, $d = 4$ and $w = \d_1 w_1$, where $\d_1 = s_{1232}$, $w_1 = s_3$, $\Pi_1=\{3\}$ and $V^{\d_1} = \mathbb R \a_3$. We take $v = \a_3$. Hence $z = s_{21}$, $y = s_{23}$ and $\Delta'=\{2, 3\}$. One checks that each root of $\Delta^- - z\i(\Delta_{1}) - \Delta'=\{-(\a_1), -(\a_1+\a_2), -(\a_1+\a_2+2 \a_3), -(\a_1+2 \a_2+2 \a_3)\}$ appears exactly one of the sets $\{-y^i(\a_1+\a_2)\}$ for $0 \le i \le 3$.
 \end{exampleplain}
 
 \subsection{Proof of Theorem \ref{t:main}}
-We argue by induction on the triple $(\Delta, \d, w)$. If $\Delta=\emptyset$, then the statement is trivial. Suppose that $\Delta \neq \emptyset$ and that the statement is true for any triple $(\Delta'', \d'', w'')$ with $|\Delta''|<|\Delta|$. Then by induction for $(\Delta_1, \d_1, w)$, $n(w)$ is conjugate to $n(\d_1) \exp(\frac{2 \pi i \phi_1^\vee}{d})$ and hence conjugate to $n(z)^{-1} n(\d_1) \exp(\frac{2 \pi i \phi_1^\vee}{d}) n(z)$.
+We argue by induction on the order of $\Delta$.  If
+$\Delta=\emptyset$, then the statement is trivial.  Suppose that
+$\Delta \neq \emptyset$ and that the statement is true for
+any proper subsystem of $\Delta$.
 
-By the computation in Section \ref{5.3}, we have $$n(z)^{-1} n(\d_1) \exp(\frac{2 \pi i \phi_1^\vee}{d}) n(z)=n(y) t \exp(\frac{2 \pi i z^{-1}(\phi_1^\vee)}{d}),$$ where
-$t=\exp (\pi i\sum_{\b \in \Delta^+ \cap z(\Delta^-) \cap \d_1 \i(\Delta^-)} z^{-1}(\b^\vee))$.
-By Lemma \ref{tech}, with $c=\frac{d\theta_1}{2\pi}$ we have
+Recall from the beginning of Section \ref{s:general} we have
+$\delta_1=\delta x_1$, and this satisfies $\delta_1(\Pi_1)=\Pi_1$. Let
+$L_1$ be the Levi subgroup of $G$ with root system $\Delta_1$, with derived group $L_{1,der}$.
+The conjugation action of
+$n(\d_1)$ preserves $L_{1,der}$. Then
 $$
-\prod_{0 \le j \le d-1} y^j(t)=\exp(2\pi i c (\rho^\vee-z^{-1}(\rho_{\Pi_1}^\vee)-\rho_K^\vee)).
+n(w),n(\delta_1) \in L_{1,der}\rtimes\langle n(\d_1)\rangle \subset {}^{\delta} G.
 $$
+Then $\Delta_1\subsetneq \Delta$.
+Let $\ch\lambda_{0,L_1}$ be the element defined for $L_1$ with the angle sequence $\theta_2,\theta_3,\dots$,
+i.e.
+\begin{equation}
+\label{e:lambda0L1}
+\ch\lambda_{0,L_1}=\frac{d\theta_2}{2\pi}\ch\rho_1+\overline{\ch\lambda_2}
+\end{equation}
+Then by the inductive hypothesis
+applied to $L_{1, der}$ we have
+\begin{subequations}
+\renewcommand{\theequation}{\theparentequation)(\alph{equation}}  
+\label{e:maincalc}
+\begin{equation}
+n(w)\sim_G n(\d_1) \exp(\frac{2 \pi \sqrt{-1} \ch\l_{0, L_1}}{d}),
+\end{equation}
+where $\ch\l_{0, L_1}$ is given by \eqref{e:lambda0L1}.
+Define $y$ and $z$ as at the beginning of Section \ref{technical}. Then \eqref{e:lengthsadd}
+holds so we can apply  Lemma \ref{l:n(z)} to conclude
+\begin{equation}
+\begin{aligned}
+  n(w)&\sim_G n(z)^{-1} n(\d_1) \exp(\frac{2 \pi \sqrt{-1} \ch\l_{0, L_1}}{d}) n(z)\\
+  &=n(y) t \exp(\frac{2 \pi \sqrt{-1} z^{-1}(\ch\l_{0, L_1})}{d}),
+\end{aligned}
+\end{equation}
+where
 
-For any subgroup $H$ of $G$ and $g, g' \in {}^\d G$, we write $g \sim_H g'$ if $g'=h g h \i$ for some $h \in G$.
+\begin{align}
+  t&=\exp (\pi \sqrt{-1}\sum_{\b \in \Delta^+ \cap z(\Delta^-) \cap \d_1 \i(\Delta^-)} z^{-1}(\b^\vee))\\
+  &=
+\exp (\pi \sqrt{-1}\sum_{\b \in \Delta^- \cap z\inv(\Delta^+) \cap z\inv\d_1 \i(\Delta^-)} \b^\vee).
+\end{align}
 
-Let $L_K$ is the standard Levi subgroup of $G$ with root system $\Delta_K$ whose derived subgroup is denoted by $G_K$. We have
-\begin{align*}
-  n(w) &\sim_G  n(y) t \exp(\frac{2 \pi i z^{-1}(\phi_1^\vee)}{d}) \\
-       & \sim_T n(y) \exp(\frac{2\pi i c (\rho^\vee-z^{-1}(\rho_{\Pi_1}^\vee)-\rho_K^\vee)}{d}) \exp(\frac{2 \pi i z^{-1}(\phi_1^\vee)}{d}) \\
-       & \sim_{G_K} \d \exp(\frac{2 \pi i c \rho_K^\vee}{d}) \exp(\frac{2\pi i c (\rho^\vee-z^{-1}(\rho_{\Pi_1}^\vee)-\rho_K^\vee)}{d}) \exp(\frac{2 \pi i z^{-1}(\phi_1^\vee)}{d}) \\
-       &=\d \exp(\frac{2\pi i (c\rho^\vee + z^{-1}(\phi_1^\vee - c\rho_{\Pi_1}^\vee))}{d}) \\
-       &=\d \exp(\frac{2\pi i (c\rho^\vee + \overline{\l_1^\vee})}{d})
-        =\d \exp(\frac{2 \pi i \l_0^\vee}{d}).
-\end{align*}
-Here the second conjugation follows from Lemma \ref{average}; the third one follows from Proposition \ref{regular} and that $\rho^\vee-z^{-1}(\rho_{\Pi_1}^\vee)-\rho_K^\vee, z^{-1}(\phi_1^\vee)$ are central for $G_K$. The proof is finished.
+
+
+
+%Applying Lemma \ref{average}  we see 
+%\begin{equation}
+%n(w)\sim n(y)\prod_{j=0}^{d-1}y^j(t)\exp(\frac{2 \pi \sqrt{-1}z\inv( \ch\l_{0, L_1})}{d}).
+%\end{equation}
+As in Section \ref{technical} let $\Delta'=\{\alpha\in\Delta\mid \langle\alpha, V^{\delta_1}\rangle=0\}$.
+This is the root system of a Levi factor $L'$, with Weyl group $W_{\Delta'}$.
+Let $\ch\gamma$ be the summand in (d). By Lemma \ref{tech}, with $c=\frac{d\theta_1}{2\pi}\in\Z$ we have
+
+\begin{equation}
+\sum_{j=0}^{d-1}y^j\ch\gamma=-\rho^\vee+z^{-1}(\rho_1^\vee)+\rho_{L'}^\vee.
+\end{equation}
+Since (d) is unchanged if we replace $\ch\gamma$ with $-\ch\gamma$, 
+by  Lemma \ref{average}  we see $n(y)t$ is $T$-conjugate to
+\begin{equation}
+n(y)\exp(\frac{2\pi \sqrt{-1}c(\ch\rho-z\inv(\ch\rho_1)-\ch\rho_{L'})}{d})
+\end{equation}
+and therefore
+\begin{equation}
+n(w)\sim n(y)\exp(\frac{2\pi \sqrt{-1}c(\ch\rho-z\inv(\ch\rho_1)-\ch\rho_{L'})}{d})
+\exp(\frac{2 \pi \sqrt{-1}z\inv( \ch\l_{0, L_1})}{d}).
+\end{equation}
+\end{subequations}
+
+\begin{lemma}
+No roots in $\Delta'$ vanish identically on $V(\d_1, \th_1)$.
+\end{lemma}
+
+
+\begin{proof}
+
+Let $\a \in \Delta'$. We have to show that
+$\langle\a, V(\d_1, \th_1)\rangle \neq \{0\}$. 
+Assume otherwise.
+$\d_1=w (x_2 \cdots x_k) \i$ and $x_2 \cdots x_k \in W_1$ fixes each
+point of $V(w, \th_1)$, we have
+$V(w, \th_1) \subseteq V(\d_1, \th_1)$. Since $\langle\alpha,V(\delta_1,\theta_1)\rangle=0$ we conclude 
+$\a \in \Delta_1$. On the other hand, since
+$\d_1(\Delta_1^+) = \Delta_1^+$, we have $\rho_1^\vee \in
+V^{\d_1}$. So $\langle\a, \rho_1^\vee \rangle = 0$, which is a contradiction.
+\end{proof}
+
+
+Therefore we can apply Proposition \ref{regular} to conclude
+$n(y)\sim_{L'}\delta\exp(\frac{2\pi \sqrt{-1}c}d\ch\rho_{L'})$.
+Using the fact that $\ch\rho-z\inv\ch\rho_1-\ch\rho_{L'}$ and $z\inv(\ch\lambda_{0,L_1})$ are central in $L'$, we can insert
+this in \eqref{e:maincalc}(g)  to give
+$$
+\begin{aligned}
+n(w)&\sim \delta\exp(\frac{2\pi \sqrt{-1}c}d\ch\rho_{L'})
+  \exp(\frac{2\pi \sqrt{-1}c(\ch\rho-z\inv(\ch\rho_1)-\ch\rho_{L'}}d)
+  \exp(\frac{2 \pi \sqrt{-1}z\inv( \ch\lambda_{0,L_1})}{d})\\
+  &=\delta\exp(\frac{2\pi \sqrt{-1}(c\ch\rho+z\inv(\ch\lambda_{0,L_1}-c\ch\rho_1))}d)\\
+\end{aligned}
+$$
+By \eqref{e:lambda0L1} and the definition of $c$ we compute:
+$$
+z\inv(\ch\lambda_{0,L_1}-c\ch\rho_1)=z\inv(\overline{\ch\lambda_2}+\frac{d\theta_2}{2\pi}\ch\rho_1-\frac{d\theta_1}{2\pi}\ch\rho_1)
+=z\inv(\ch\lambda_1)=\overline{\ch\lambda_1}.
+$$
+Inserting this we conclude
+$$
+n(w)\sim\delta\exp(\frac{2\pi \sqrt{-1}(c\ch\rho+\overline{\ch\lambda_1})}d)=
+\delta\exp(\frac{2\pi \sqrt{-1}}d\ch\lambda_0).
+$$
+This completes the proof.
+
 
 \sec{Kac diagrams}
 \label{s:kac}
 
 We consider a connected complex semisimple group $G$, with Cartan subgroup $T$, root system $\Delta$,
 simple roots $\Pi$ and Weyl group $W$. We are also given
-an  automorphism $\delta$ of $G$, possibly trivial, of finite order $n$, preserving a pinning $(G,T,\{X_\alpha\mid \alpha\in\Pi\})$.
+an  automorphism $\delta$ of $G$, possibly trivial, of finite order $n$, preserving a pinning.
 The semisimple
 conjugacy classes of $G\delta$ of finite order are parametrized by their
 {\it Kac diagrams}. We summarize the statements here, and refer to
@@ -1036,7 +1217,7 @@ to an element of $(T^\delta)^0$.
 Define
 \begin{equation}
 \label{e:e}
-e(\ch\gamma)=\exp(2\pi i\ch\gamma) \quad(\ch\gamma\in V^\delta).
+e(\ch\gamma)=\exp(2\pi \sqrt{-1}\ch\gamma) \quad(\ch\gamma\in V^\delta).
 \end{equation}
 This map is surjective  onto the elements of finite order in $(T^\delta)^0$.
 
@@ -1051,23 +1232,25 @@ $G^{\delta}$. Write $\Pi_\delta=\{\alpha_1,\dots,\alpha_r\}$.
 Let $\Delta_\delta$ be the root system of
 $(T^{\delta})^0\subset (G^{\delta})^0$, and let
 $\ch\Delta_\delta=\{\ch\alpha\mid \alpha\in\Delta_\delta\}\subset
-V^\delta$ be the canonical coroots defined by
+V^\delta$ be the canonical coroot
+s defined by
 (\cite{bourbaki_4-6}*{Chapter 6, Section 1.1}).
 Set $\ch R_\delta=\Z\langle\ch\Delta_\delta\rangle$, the coroot lattice of $\Delta_\delta$.
 Then
 $$
 X_*((T^{\delta})^0)=(X_*)^\delta\quad\text{and}\quad \ch R_\delta=(\ch R)^\delta.
 $$
+Let $W_\delta$ be the Weyl group of $\Delta_\delta$.
 
 Define projection $P:V\rightarrow V^\delta$ by
 $P(v)=\frac1n \sum_{i=0}^{n-1}\delta^iv$.
-Then $P(X_*)$ is a lattice containing $X_*^\delta$ of finite index.
-The group $W_\delta$ acts on $P(X_*)$ and $P(\ch R)$. Define:
+Then $P(X_*)$ is a lattice containing $X_*^\delta$ of finite index,
+and $W_\delta$ acts on $P(X_*)$ and $P(\ch R)$. Define:
 \begin{equation}
 \label{e:affine}
 \begin{aligned}
-\wh W_\delta&=W^\delta\ltimes P(X_*), \\
-\wt W_\delta&=W^\delta\ltimes P(\ch R).
+\wh W_\delta&=W_\delta\ltimes P(X_*), \\
+\wt W_\delta&=W_\delta\ltimes P(\ch R).
 \end{aligned}
 \end{equation}
 Then $\wt W_\delta$ is an affine Weyl group. Let $\overline C$ be a
@@ -1121,7 +1304,7 @@ The final assertion is standard.
 
 We now apply the  theory of  affine Weyl groups to describe $\overline C$
 when $G$ is simple.
-Set $\zeta=e^{2\pi i/n}$ and let
+If $\zeta$ is a root of unity let
 $$
 \g[\zeta]=\{X\in \g\mid \Ad(g)(X)=\zeta X\}.
 $$
@@ -1253,8 +1436,8 @@ which commute with $\delta$.
 \end{proposition}
 
 \begin{remark}
-  In fact, the result is true for any finite Coxeter group (see \cite{geck_pfeiffer}*[Theorem 3.2.7] when $\d=id$ and
-  \cite{he_minimal_length_double_cosets}*[Theorem 7.5] in general). The original proof (even for finite Weyl groups) is based on a characterization of elliptic conjugacy classes via the characteristic polynomials and length functions. Such characterization is established via a laborious case-by-case analysis on the elliptic conjugacy classes with the aid of computer for exceptional groups. Now we give a general proof for finite Weyl groups via the Kac diagram. 
+  In fact, the result is true for any finite Coxeter group (see \cite{geck_pfeiffer}*{Theorem 3.2.7} when $\d=id$ and
+  \cite{he_minimal_length_double_cosets}*{Theorem 7.5} in general). The original proof (even for finite Weyl groups) is based on a characterization of elliptic conjugacy classes via the characteristic polynomials and length functions. Such characterization is established via a laborious case-by-case analysis on the elliptic conjugacy classes with the aid of computer for exceptional groups. Now we give a general proof for finite Weyl groups via the Kac diagram. 
 \end{remark}
 
 \begin{proof}
@@ -1274,39 +1457,39 @@ The Proposition \ref{stable-d'} is used in an essential way to prove that in fin
 	Let $W$ be a finite Weyl group and $\mathcal O$ be a $W$-conjugacy class of $W \d$. Let $J \subset I$ with $\d(J)=J$ and $\mathcal O \cap W_J \d$ contains an elliptic element of $W_J \d$. Then $\mathcal O \cap W_J \d$ is a single conjugacy class of $W_J$. 
 \end{theorem}
 
-This result was first proved in \cite{geck_pfeiffer}*[Theorem 3.2.11] when $\d=id$ and in
-\cite{CH}*[Theorem 2.3.4] in general. The strategy is to first reduce to the case where $W$ is irreducible, then to reduce to the case where $W_J$ is irreducible. Note that the different $W_J$-conjugacy classes in $\mathcal O \cap W_J \d$ are obtained from one another by diagram automorphisms of $W_J$. The final (and crucial) step in \cite{geck_pfeiffer} and \cite{CH} was to use the characterization of elliptic conjugacy classes to deduce that the intersection is a single $W_J$-conjugacy class. Now the final step may be replaced by Proposition \ref{stable-d'}, the proof of which is simpler than the characterization of elliptic conjugacy classes. 
+This result was first proved in \cite{geck_pfeiffer}*{Theorem 3.2.11} when $\d=id$ and in
+\cite{CH}*{Theorem 2.3.4} in general. The strategy is to first reduce to the case where $W$ is irreducible, then to reduce to the case where $W_J$ is irreducible. Note that the different $W_J$-conjugacy classes in $\mathcal O \cap W_J \d$ are obtained from one another by diagram automorphisms of $W_J$. The final (and crucial) step in \cite{geck_pfeiffer} and \cite{CH} was to use the characterization of elliptic conjugacy classes to deduce that the intersection is a single $W_J$-conjugacy class. Now the final step may be replaced by Proposition \ref{stable-d'}, the proof of which is simpler than the characterization of elliptic conjugacy classes. 
 
 \sec{Non-Elliptic elements}
 \label{s:nonelliptic}
 
 For $w \in W$, we denote by $\text{supp}(w)$ the support of $w$, i.e., the set of simple reflections that occur in some (or equivalently, any) reduced expression of $w$. We define $$\text{supp}(w\delta): =\bigcup_{i \in \mathbb Z} \delta^i(\text{supp}(w)).$$ 
 
-By \cite{geck_pfeiffer}*[\S 3.1] and
-\cite{he_minimal_length_double_cosets}*[\S 7], a conjugacy class of $\Wext$ is
+By \cite{geck_pfeiffer}*{\S 3.1} and
+\cite{he_minimal_length_double_cosets}*{\S 7}, a conjugacy class of $\Wext$ is
 elliptic if and only if it does not intersect with
-${}^\delta W_J=W_J \rtimes \langle \delta \rangle$ for any proper
-$\delta$-stable subsets $J$ of $\Pi$, in other words,
+$\Wext_J=W_J \rtimes \langle \delta \rangle$ for any proper
+$\delta$-stable subset $J$ of $\Pi$, in other words,
 $\text{supp}(w)=\Pi$ for any $w$ in the conjugacy class.
 
-We have the following result (see \cite{geck_pfeiffer}*[Corollary
-3.1.11] for untwisted conjugacy classes and \cite{CH}[Proposition
-2.4.1] in the general case).
+We have the following result (see \cite{geck_pfeiffer}*{Corollary
+3.1.11} for untwisted conjugacy classes and \cite{CH}*{Proposition
+2.4.1} in the general case).
 
 \begin{proposition}\label{x-delta}
 	Let $w_1, w_2 \in W\delta$ be minimal length elements in the same conjugacy class. Let $J_i=\text{supp}(w_i)$ for $i=1,2$. Then there exists $x \in {}^{J_2} W^{J_1} \cap W^\delta$ with $x J_1 x^{-1}=J_2$. 
 \end{proposition}
 
-Consider the set $\mathcal P_{\delta}$ of pairs $(J, D)$, where $J \subset \Pi$ is a $\delta$-stable subset and $D \subset W_J \delta$ is an elliptic conjugacy class of ${}^\delta W_J$. The equivalence relation on $\mathcal P_{\delta}$ is defined by $(J, D) \sim (J', D')$ if there exists $x \in {}^{J'} W^J \cap W^\delta$ such that $x J x^{-1}=J'$ and $x D x^{-1}=D'$. 
+Consider the set $\mathcal P_{\delta}$ of pairs $(J, D)$, where $J \subset \Pi$ is a $\delta$-stable subset and $D \subset W_J \delta$ is an elliptic conjugacy class of $\Wext_J$. The equivalence relation on $\mathcal P_{\delta}$ is defined by $(J, D) \sim (J', D')$ if there exists $x \in {}^{J'} W^J \cap W^\delta$ such that $x J x^{-1}=J'$ and $x D x^{-1}=D'$. 
 
 Combining Theorem \ref{fuse} with Proposition \ref{x-delta}, we have 
 
 \begin{theorem}\label{cal-P}
-	The map $$C \mapsto \{(J, C \cap W_J \delta); J=\text{supp}(w) \text{ for some } w \text{ of minimal length in } C\}$$ induces a bijection from $[W\delta] \to \mathcal P_{\delta}/\sim$. 
+	The map $$C \mapsto \{(J, C \cap W_J \delta)\mid J=\text{supp}(w) \text{ for some } w \text{ of minimal length in } C\}$$ induces a bijection from $[W\delta] \to \mathcal P_{\delta}/\sim$. 
 \end{theorem}
 
 For untwisted conjugacy classes, the statement is obtained by Geck and
-Pfeiffer in \cite{geck_pfeiffer}*[Theorem 3.2.12]. The general case is
+Pfeiffer in \cite{geck_pfeiffer}*{Theorem 3.2.12}. The general case is
 proved in a similar way.
 
 Let $C\in [\Wext]$ and $w \in C$. In general the lifts of $w$ to $\Gext$ are not $G$-conjugate. However there is a reasonable canonical choice of this lifting, defined as follows.
@@ -1335,32 +1518,20 @@ Each table is preceded by the affine Dynkin diagram with the labels of the nodes
 \item Name: name of the elliptic conjugacy class, as in \cite{carter_conjugacy_classes} and \cite{geck_pfeiffer}.
 \item d: order of the elements in the conjugacy classes.
 \item Kac diagram: with respect to the given affine Dynkin diagram.
-\item Centralizer: type of the derived group of the centralizer.
-\item good: $w^d$ in the braid monoid (see Theorem \ref{t:braid}).
-\item description: Realizing $w$ as the power of the Coxeter element of $G$ or a subgroup;
-  the long element $w_0$;
-if $w$ is regular (r).
+\item Centralizer: type of the derived group of the centralizer of the nilpotent element.
+\item good: $w^d$ in the braid monoid (see Theorem \ref{t:braid}). Here $\Delta_S$ is the long element of the
+  Weyl group $W_S$ of the Levi factor defined by $S$, and $\Delta$ is the long element of the Weyl group of $W$.
 \end{enumerate}
 
-In many cases one can use a combination of techniques to compute Kac
-coordinates.  If $w$ is contained in the Weyl group of a proper subgroup
-then its Kac coordinates can
-be calculated in this subgroup. 
-Also if  $w$ is $d$-regular then $[t(w)]=\e(\ch\rho/d)\delta$, see Section
-\ref{s:regular} and \cite{reeder_torsion}*{Section 2.6}.  
-One needs to use the affine Weyl group to move $\ch\rho/d$ to the
-fundamental alcove to compute the Kac coordinates.
+These tables were computed using the algorithm of Section
+\ref{const}.
 
-Suppose $w$ is an elliptic element, and 
-$[n(w)]=[\e(\ch\gamma)\delta]$. In some cases powers of $w$ are also elliptic. If  $w^k$ is also elliptic then
-$[n(w^k)]=[\e(k\ch\gamma)\delta]$.  Thus the Kac coordinates are
-those of the image of $k\ch\gamma$ in the fundamental alcove under the
-affine Weyl group. Again there is no closed formula for these
-coordinates.
-
-There are very few elliptic conjugacy classes not amenable to these methods.
-For example in $E_8$ the only cases not handled this way are 
-$E_8(a4)$ and $E_8(a7)$. 
+Alternatively one can compute the Kac diagram in many cases using
+standard techniques, starting with the result for regular elements.
+The remaining cases require a number of case-by-case arguments, for
+example see \cite{rgly}*{Section 8}. This is how the tables in
+\cite{bouwknegt}, \cite{rgly}, and \cite{levy_exceptional} were
+computed
 
 \begin{exampleplain}
 Consider the conjugacy class $E_8(a_7)$ of  $W(E_8)$
@@ -1433,7 +1604,8 @@ it turns out the positive chamber is not in good position for this element
 (both ``good'' and ``good position'' are defined in Section \ref{s:digression}), and
 in particular the Levi subgroups defined by \eqref{e:levis} are not standard.
 \end{remarkplain}
-\bigskip
+
+\newpage
 
 
 $$
@@ -1442,15 +1614,18 @@ G_2:\quad \begin{dynkinDiagram}[Kac,extended,root radius=.12cm, edge length=1.0c
 \end{dynkinDiagram}
 $$
 
-\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\medskip
+
+\hskip.8in
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
-w&   d    &  Kac diagram &good&Centralizer&description\\\hline
-$12$ & $6$ &   $111$ & $\Delta^2$&$*$ & Cox,r\\\hline
-$1212$ & $3$ &  $110$ & $\Delta^2$&$A_1$ &Cox$^2,r$\\\hline
-$w_0$ & $2$ &  $010$ & $\Delta^2$&$2A_1$ & Cox$^6,r$\\\hline
+w&   d    &  Kac diagram &good&Centralizer\\\hline
+$12$ & $6$ &   $111$ & $\Delta^2$&$*$ \\\hline
+$1212$ & $3$ &  $110$ & $\Delta^2$&$A_1$ \\\hline
+$w_0$ & $2$ &  $010$ & $\Delta^2$&$2A_1$ \\\hline
   \end{tabular}
 
-  \bigskip
+  \bigskip  \bigskip
 
 $$
 ^3D_4:\quad \begin{dynkinDiagram}[Kac,extended,root radius=.12cm, edge length=1.0cm]{D}[3]{4}
@@ -1458,13 +1633,16 @@ $$
 \end{dynkinDiagram}
 $$
 
+\medskip
+
+\hskip.7in
 \begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
-w&   d    &  Kac diagram &good&Centralizer&description\\\hline
-  $12$ & $12$ &   $111$ & $\Delta^2$&$*$ &Cox,r\\\hline
-  $132132$ & $6$ &   $010$ & $\Delta^2\Delta_{23}^4$&$2A_1$ &\\\hline
-  $1323$ & $6$ &   $101$ & $\Delta^2$&$A_1$ &r\\\hline
-      $13213423$ & $3$ &   $001$ & $\Delta^2$&$A_2$ &Cox$^4$,r\\\hline
+w&   d    &  Kac diagram &good&Centralizer\\\hline
+  $12$ & $12$ &   $111$ & $\Delta^2$&$*$ \\\hline
+  $132132$ & $6$ &   $010$ & $\Delta^2\Delta_{23}^4$&$2A_1$ \\\hline
+  $1323$ & $6$ &   $101$ & $\Delta^2$&$A_1$ \\\hline
+      $13213423$ & $3$ &   $001$ & $\Delta^2$&$A_2$ \\\hline
   \end{tabular}
 
 \newpage
@@ -1480,19 +1658,20 @@ $$
 \medskip
 \setlength\extrarowheight{3pt}
 
-\begin{tabular}{|l|l|l|l|l|l|}
+\hskip.5in
+\begin{tabular}{|l|l|l|l|l|}
 \hline
-Name&   d    &  Kac diagram &good&Centralizer&description\\\hline
-$F_4$ & $12$ &   $11111$ & $\Delta^2$&$*$ & $\cox(F_4)$,r\\\hline
-$B_4$ & $8$ &   $11101$ & $\Delta^2$&$A_1$ &r\\\hline
-$F_4(a1)$ & $6$ &  $10101$ & $\Delta^2$&$2A_1$ &r\\\hline
-$D_4$ & $6$ &  $11100$ & $\Delta^2\Delta_{34}^4$&$A_2$ &\\\hline
+Name&   d    &  Kac diagram &good&Centralizer\\\hline
+$F_4$ & $12$ &   $11111$ & $\Delta^2$&$*$ \\\hline
+$B_4$ & $8$ &   $11101$ & $\Delta^2$&$A_1$ \\\hline
+$F_4(a1)$ & $6$ &  $10101$ & $\Delta^2$&$2A_1$ \\\hline
+$D_4$ & $6$ &  $11100$ & $\Delta^2\Delta_{34}^4$&$A_2$ \\\hline
 
-$C_3+A_1$ & $6$ &   $01010$ & $\Delta^2\Delta_{12}^4$&$3A_1$ &\\\hline
-$D_4(a1)$ & $4$ &   $10100$ & $\Delta^2$&$A_1+A_2$ &r\\\hline
-$A_3+\wt A_1$ & $4(8)$ &   $02010$ & $\Delta^2\Delta_{23}^2$&$3A_1$ &\\\hline
-$A_2+\wt A_2$ & $3$ &   $00100$ & $\Delta^2$&$2A_2$ &r\\\hline
-$4A_1$ & $2$ &   $01000$ & $\Delta^2$&$A_1+C_3$ &$w_0$,r\\\hline
+$C_3+A_1$ & $6$ &   $01010$ & $\Delta^2\Delta_{12}^4$&$3A_1$ \\\hline
+$D_4(a1)$ & $4$ &   $10100$ & $\Delta^2$&$A_1+A_2$ \\\hline
+$A_3+\wt A_1$ & $4(8)$ &   $02010$ & $\Delta^2\Delta_{23}^2$&$3A_1$ \\\hline
+$A_2+\wt A_2$ & $3$ &   $00100$ & $\Delta^2$&$2A_2$ \\\hline
+$4A_1$ & $2$ &   $01000$ & $\Delta^2$&$A_1+C_3$\\\hline
 \end{tabular}
 
 \medskip
@@ -1500,7 +1679,7 @@ $4A_1$ & $2$ &   $01000$ & $\Delta^2$&$A_1+C_3$ &$w_0$,r\\\hline
 The conjugacy class $A_3+\wt A_1$ of $W$ has order $4$, but its lift
 to a semisimple conjugacy class has order $8$ \cite{AH}*{Theorem B}.
 
-\bigskip
+\bigskip\bigskip
 
 
 
@@ -1512,19 +1691,19 @@ $$
 
 \medskip
 \setlength\extrarowheight{5pt}
-\hskip-.5in
+\hskip0in
 \begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
-  w&   d    &  Kac diagram &good&Centralizer&description\\\hline
-$1254$                            &  18  &  $11111$   & $\Delta^2$&*&$\cox(^2E_6)$,r\\\hline
-$123143$                  &  12  &  $11011$   &$\Delta^2$&$A_1$&r\\\hline
-  $45423145$                   &  10  &  $01011$  &  $\Delta^2\Delta_4^8$&$2A_1$&\\\hline
-$1231431543165431$   &  $6$ & $ 1 1 0 0 0$   &$\Delta^2\Delta_{1356}^4$&$B_3$& \\\hline
-  $425423456542345$   &  6   &  $00100$    &$\Delta^2\Delta_{2345}^2$&$2A_2$&\\\hline
-  $23423465423456$   &  6    &    $00011$     & $\Delta^2\Delta_{24}^4$&$A_3$&\\\hline
-  $124315436543$   & $6$ & $01001$ &$\Delta^2$ & $A_1+B_2$ &r \\\hline
-$142314354231365431$ &  4  &  $00010$   &$\Delta^2$&$A_1+A_3$&r\\\hline
-  $w_0$     & $2$ &   $00001$ & $\Delta^2$&$C_4$ &r \\\hline
+  w&   d    &  Kac diagram &good&Centralizer\\\hline
+$1254$                            &  18  &  $11111$   & $\Delta^2$&*\\\hline
+$123143$                  &  12  &  $11011$   &$\Delta^2$&$A_1$\\\hline
+  $45423145$                   &  10  &  $01011$  &  $\Delta^2\Delta_4^8$&$2A_1$\\\hline
+$1231431543165431$   &  $6$ & $ 1 1 0 0 0$   &$\Delta^2\Delta_{1356}^4$&$B_3$\\\hline
+  $425423456542345$   &  6   &  $00100$    &$\Delta^2\Delta_{2345}^2$&$2A_2$\\\hline
+  $23423465423456$   &  6    &    $00011$     & $\Delta^2\Delta_{24}^4$&$A_3$\\\hline
+  $124315436543$   & $6$ & $01001$ &$\Delta^2$ & $A_1+B_2$ \\\hline
+$142314354231365431$ &  4  &  $00010$   &$\Delta^2$&$A_1+A_3$\\\hline
+  $w_0$     & $2$ &   $00001$ & $\Delta^2$&$C_4$\\\hline
 \end{tabular}
 
 \newpage
@@ -1537,24 +1716,25 @@ $$
 
 \medskip
 
-\begin{tabular}{|l|l|l|l|l|l|l|}
+\hskip.4in
+\begin{tabular}{|l|l|l|l|l|l|}
   \hline
-  Name&   d &  Kac diagram &good&Centralizer&description\\\hline
-      &         &      $\phantom{11}1$&&&\\
-      &         &      $\phantom{11}1$&&&\\
-  $E_6$ & $12$ &   $11111$ & $\Delta^2$&$*$ & $\cox(E_6)$,r\\\hline
-        &          &      $\phantom{11}1$&&&\\
-      &         &      $\phantom{11}1$&&&\\
-  $E_6(a1)$ & $9$ &   $11011$ & $\Delta^2$&$A_1$ &r\\\hline
-        &         &      $\phantom{11}1$&&&\\
-      &         &      $\phantom{11}0$&&&\\
-  $E_6(a2)$ & $6$ &  $10101$ & $\Delta^2$&$3A_1$ &r\\\hline
-             &  &      $\phantom{11}0$&&&\\
-&           &          $\phantom{11}1$&&&\\
-  $A_5+A_1$ & $6$ &  $01010$ & $\Delta^2\Delta_{24}^4$&$4A_1$ &\\\hline
-            &  &      $\phantom{11}0$&&&\\
- &          &          $\phantom{11}0$&&&\\
-  $3A_2$ & $3$ &   $00100$ & $\Delta^2$&$3A_2$ &r \\\hline
+  Name&   d &  Kac diagram &good&Centralizer\\\hline
+      &         &      $\phantom{11}1$&&\\
+      &         &      $\phantom{11}1$&&\\
+  $E_6$ & $12$ &   $11111$ & $\Delta^2$&$*$ \\\hline
+        &          &      $\phantom{11}1$&&\\
+      &         &      $\phantom{11}1$&&\\
+  $E_6(a1)$ & $9$ &   $11011$ & $\Delta^2$&$A_1$ \\\hline
+        &         &      $\phantom{11}1$&&\\
+      &         &      $\phantom{11}0$&&\\
+  $E_6(a2)$ & $6$ &  $10101$ & $\Delta^2$&$3A_1$ \\\hline
+             &  &      $\phantom{11}0$&&\\
+&           &          $\phantom{11}1$&&\\
+  $A_5+A_1$ & $6$ &  $01010$ & $\Delta^2\Delta_{24}^4$&$4A_1$ \\\hline
+            &  &      $\phantom{11}0$&&\\
+ &          &          $\phantom{11}0$&&\\
+  $3A_2$ & $3$ &   $00100$ & $\Delta^2$&$3A_2$ \\\hline
 \end{tabular}
 
 \newpage
@@ -1565,36 +1745,39 @@ E_7:\quad \begin{dynkinDiagram}[Kac,extended,root radius=.12cm, edge length=1.0c
 \end{dynkinDiagram}
 $$
 
-\medskip
-\setlength\extrarowheight{5pt}
-\begin{tabular}{|l|l|l|l|l|l|}
-\hline
-  Name&   d &  Kac diagram &good&Centralizer&description\\\hline
-        &          &      $\phantom{111}1$&&&\\
-  $E_7$     & $18$ &  $1111111$ & $\Delta^2$&$*$ & $\cox(E_7)$,r\\\hline
-          &         &      $\phantom{111}1$&&&\\
-  $E_7(a1)$ & $14$ &  $1110111$ & $\Delta^2$&$A_1$&\\\hline
-                &    &      $\phantom{111}1$&&&\\
-  $E_7(a2)$ & $12$ &  $1101011$ & $\Delta^2\Delta_{257}^2$&$2A1$ &\\\hline
-      &      &          $\phantom{111}1$&&&\\
-  $E_7(a3)$ & $30$ &   $3212123$ & $\Delta^2\Delta_{24}^4$&$*$ &\\\hline
-        &      &          $\phantom{111}1$&&&\\
-  $D_6+A_1$ & $10$ &  $0101010$ & $\Delta^2\Delta_{24}^8$&$4A_1$ &\\\hline
-        &      &         $\phantom{111}0$&&&\\
-  $A_7 $     & $8$ &  $0101010$ & $\Delta^2\Delta_{257}^2\Delta_{2}^4$&$2A_1+A_2$ &\\\hline
-        &      &          $\phantom{111}0$&&&\\
-  $E_7(a4)$ & $6$ &   $1001001$ & $\Delta^2$&$2A_2+A_1$ &\\\hline
-        &      &         $\phantom{111}1$&&&\\
-  $D_6(a2)+A_1$ & $6$ &  $0100010$ & $\Delta^2\Delta_{13}^4$&$2A_1+A_3$ &\\\hline
-        &      &        $\phantom{111}0$&&&\\
-  $A_5+A_2$  & $6$ &   $0010100$ & $\Delta^2\Delta_{2345}^2$&$3A_2$ &\\\hline
-        &      &         $\phantom{111}1$&&&\\
-  $D_4+3A_1$ & $6$ &   $0001000$ & $\Delta^2\Delta_{24567}^4$&$2A_3$ &\\\hline
-        &      &          $\phantom{111}0$&&&\\
-  $2A_3+A_1$ & $4$ &  $0001000$ & $\Delta^2\Delta_{257}^2$&$2A_3+A_1$ &\\\hline
-        &      &         $\phantom{111}1$&&&\\
-  $7A_1$     & $2$ &  $00000000$ & $\Delta^2$&$A_7$ &$w_0$\\\hline
+\bigskip
+
+{\hskip.3in
+\begin{tabular}{|l|l|l|l|l|}
+  \hline
+  
+  Name&   d &  Kac diagram &good&Centralizer\\\hline
+        &          &      $\phantom{111}1$&&\\
+  $E_7$     & $18$ &  $1111111$ & $\Delta^2$&$*$ \\\hline
+          &         &      $\phantom{111}1$&&\\
+  $E_7(a1)$ & $14$ &  $1110111$ & $\Delta^2$&$A_1$\\\hline
+                &    &      $\phantom{111}1$&&\\
+  $E_7(a2)$ & $12$ &  $1101011$ & $\Delta^2\Delta_{257}^2$&$2A1$ \\\hline
+      &      &          $\phantom{111}1$&&\\
+  $E_7(a3)$ & $30$ &   $3212123$ & $\Delta^2\Delta_{24}^4$&$*$ \\\hline
+        &      &          $\phantom{111}1$&&\\
+  $D_6+A_1$ & $10$ &  $0101010$ & $\Delta^2\Delta_{24}^8$&$4A_1$ \\\hline
+        &      &         $\phantom{111}0$&&\\
+  $A_7 $     & $8$ &  $0101010$ & $\Delta^2\Delta_{257}^2\Delta_{2}^4$&$2A_1+A_2$ \\\hline
+        &      &          $\phantom{111}0$&&\\
+  $E_7(a4)$ & $6$ &   $1001001$ & $\Delta^2$&$2A_2+A_1$ \\\hline
+        &      &         $\phantom{111}1$&&\\
+  $D_6(a2)+A_1$ & $6$ &  $0100010$ & $\Delta^2\Delta_{13}^4$&$2A_1+A_3$ \\\hline
+        &      &        $\phantom{111}0$&&\\
+  $A_5+A_2$  & $6$ &   $0010100$ & $\Delta^2\Delta_{2345}^2$&$3A_2$ \\\hline
+        &      &         $\phantom{111}1$&&\\
+  $D_4+3A_1$ & $6$ &   $0001000$ & $\Delta^2\Delta_{24567}^4$&$2A_3$ \\\hline
+        &      &          $\phantom{111}0$&&\\
+  $2A_3+A_1$ & $4$ &  $0001000$ & $\Delta^2\Delta_{257}^2$&$2A_3+A_1$ \\\hline        
+        &      &         $\phantom{111}1$&&\\
+  $7A_1$     & $2$ &  $00000000$ & $\Delta^2$&$A_7$ \\\hline
 \end{tabular}
+}
 
 \newpage
 $$
@@ -1605,81 +1788,82 @@ $$
 
 \medskip
 
-\hskip-.4in
+\hskip.2in
 \begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
-Name&   d &  Kac diagram &good&Centralizer&description\\\hline
-        &      &          $\phantom{11}1$&&&\\
-  $E_8$ & $30$ &  $11111111$ & $\Delta^2$&$*$ & $\cox(E_8)$,r\\\hline
-        &      &          $\phantom{11}0$&&&\\
-  $D_8(a2)$ & $30$   & $12102030$ &$\Delta^6\Delta_{2456}^4\Delta_5^{20}$ &$4A_1$ & \\\hline
-        &      &          $\phantom{11}1$&&&\\
-$E_8(a1)$ & $24$  &  $11011111$ & $\Delta^2$ &$A_1$ & r\\\hline
-        &      &          $\phantom{11}1$&&&\\
-$E_8(a2)$ & $20$  & $11010111$ & $\Delta^2$ & $2A_1$ & r\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$E_7A_1$ & $18$  & $11101010$ & $\Delta^2\Delta_{24}^{16}$ & $4A_1$ & $\cox(E_7A_1)$\\\hline
-        &      &          $\phantom{11}1$&&&\\
-$E_8(a4)$ & $18$  & $01010111$ & $\Delta^2\Delta_{24}^4$ & $3A_1$ & \\\hline
-        &      &          $\phantom{11}0$&&&\\
-$E_8(a5)$ & $15$  &  $10101011$ & $\Delta^2$ & $4A_1$ & r\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$D_8$ & $14$ & $10101010$ & $\Delta^2\Delta_{2}^{12}$ & $5A_1$ & $\cox(D_8)$\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$E_8(a3)$ & $12$  &$10100101$ & $\Delta^2$ & $3A_1+A_2$ & r\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$E_8(a7)$ & $12$ & $01010011$ & $\Delta^2\Delta_{2345}^{2}$ & $A_1+2A_2$ & \\\hline
-        &      &          $\phantom{11}1$&&&\\
-$E_6+A_2$ & $12$ &  $00100100$ & $\Delta^2\Delta_{2345}^{6}$ & $3A_2$ & $\cox(E_6A_2)$\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$D_5(a1)+A_3$ & $12$ & $01002000$ & $\Delta^2\Delta_{123456}^{2}$ & $3A_1+A_3$ & \\\hline
-        &      &          $\phantom{11}0$&&&\\
-$D_8(a1)$ & $12$ & $00101010$ & $\Delta^2\Delta_{4578}^{4}$ & $4A_1+A_2$ & \\\hline
+Name&   d &  Kac diagram &good&\\\hline                    
+        &      &          $\phantom{11}1$&&\\
+  $E_8$ & $30$ &  $11111111$ & $\Delta^2$&$*$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+  $D_8(a2)$ & $30$   & $12102030$ &$\Delta^6\Delta_{2456}^4\Delta_5^{20}$ &$4A_1$ \\\hline
+        &      &          $\phantom{11}1$&&\\
+$E_8(a1)$ & $24$  &  $11011111$ & $\Delta^2$ &$A_1$ \\\hline
+        &      &          $\phantom{11}1$&&\\
+$E_8(a2)$ & $20$  & $11010111$ & $\Delta^2$ & $2A_1$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$E_7A_1$ & $18$  & $11101010$ & $\Delta^2\Delta_{24}^{16}$ & $4A_1$ \\\hline
+        &      &          $\phantom{11}1$&&\\
+$E_8(a4)$ & $18$  & $01010111$ & $\Delta^2\Delta_{24}^4$ & $3A_1$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$E_8(a5)$ & $15$  &  $10101011$ & $\Delta^2$ & $4A_1$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$D_8$ & $14$ & $10101010$ & $\Delta^2\Delta_{2}^{12}$ & $5A_1$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$E_8(a3)$ & $12$  &$10100101$ & $\Delta^2$ & $3A_1+A_2$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$E_8(a7)$ & $12$ & $01010011$ & $\Delta^2\Delta_{2345}^{2}$ & $A_1+2A_2$ \\\hline
+        &      &          $\phantom{11}1$&&\\
+$E_6+A_2$ & $12$ &  $00100100$ & $\Delta^2\Delta_{2345}^{6}$ & $3A_2$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$D_5(a1)+A_3$ & $12$ & $01002000$ & $\Delta^2\Delta_{123456}^{2}$ & $3A_1+A_3$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$D_8(a1)$ & $12$ & $00101010$ & $\Delta^2\Delta_{4578}^{4}$ & $4A_1+A_2$ \\\hline
 
 
 
 \end{tabular}
 
 \pagestyle{headings}
-\hskip-.8in
+\hskip0in
 \begin{tabular}{|l|l|l|l|l|l|l|l|}
 \hline
-  Name&   d&  Kac diagram &good&Centralizer&description\\\hline
-          &      &          $\phantom{11}0$&&&\\
-$E_7(a2)+A_1$ & $12$  &$11001010$ & $\Delta^2\Delta_{2345}^{2}\Delta_{24}^{8}$ & $2A_1+A_3$ & \\\hline
-          &      &          $\phantom{11}0$&&&\\
-$E_8(a6)$ & $10$  &$00100101$ & $\Delta^2$ & $2A_1+2A_2$ & $\cox(E_8)^3$,  r\\\hline
-          &      &          $\phantom{11}0$&&&\\
-$D_6+2A_1$ & $10$  &$11001000$ & $\Delta^2\Delta_{2456}^{8}$ & $2A_3$ & \\\hline
-          &      &          $\phantom{11}0$&&&\\
-$A_8$ & $9$  &$00100100$ & $\Delta^2\Delta_{34}^{4}$ & $A_1+3A_2$ & $A_8$\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$A_1+A_7$ & $8$  &$01001000$ & $\Delta^2\Delta_{2345}^{2}\Delta_{25}^{4}$ & $A_1+2A_3$ & $\cox(A_1+A_7),\cox(A_3+D_5)$\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$D_8(a3)$ & $8$  &$00100010$ & $\Delta^2$ & $2A_1+2A_3$ &r\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$E_8(a8)$ & $6$  &$00010001$ & $\Delta^2$ & $A_3+A_4$ &  $\cox(E_8)^5$,  r\\\hline
+  Name&   d&  Kac diagram &good&Centralizer\\\hline
+          &      &          $\phantom{11}0$&&\\
+$E_7(a2)+A_1$ & $12$  &$11001010$ & $\Delta^2\Delta_{2345}^{2}\Delta_{24}^{8}$ & $2A_1+A_3$ \\\hline
+          &      &          $\phantom{11}0$&&\\
+$E_8(a6)$ & $10$  &$00100101$ & $\Delta^2$ & $2A_1+2A_2$ \\\hline
+          &      &          $\phantom{11}0$&&\\
+$D_6+2A_1$ & $10$  &$11001000$ & $\Delta^2\Delta_{2456}^{8}$ & $2A_3$ \\\hline
+          &      &          $\phantom{11}0$&&\\
+$A_8$ & $9$  &$00100100$ & $\Delta^2\Delta_{34}^{4}$ & $A_1+3A_2$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$A_1+A_7$ & $8$  &$01001000$ & $\Delta^2\Delta_{2345}^{2}\Delta_{25}^{4}$ & $A_1+2A_3$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$D_8(a3)$ & $8$  &$00100010$ & $\Delta^2$ & $2A_1+2A_3$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$E_8(a8)$ & $6$  &$00010001$ & $\Delta^2$ & $A_3+A_4$ \\\hline
 
-        &      &          $\phantom{11}0$&&&\\
-$E_7(a4)+A_1$ & $6$  &$01000010$ & $\Delta^2\Delta_{34}^{4}$ & $2A_1+A_5$ & \\\hline
-        &      &          $\phantom{11}1$&&&\\
-$E_6(a2)+A_2$ & $6$  &$00000100$ & $\Delta^2\Delta_{2345}^{2}$ & $A_2+A_5$ & \\\hline
-        &      &          $\phantom{11}0$&&&\\
-$2D_4$ & $6$  &$10001000$ & $\Delta^2\Delta_{1367}^{4}$ & $A_3+D_4$ & $\cox(2D_4)$\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$D_4+4A_1$ & $6$  &$11000000$ & $\Delta^2\Delta_{123456}^{4}$ & $A_7$ & $\cox(D_4+4A_1)$\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$A_1+A_2+A_5$ & $6$  &$00100000$ & $\Delta^2\Delta_{234578}^{2}\Delta_{78}^{2}$ & $A_1+A_2+A_5$ & $\cox(A_1+A_2+A_5)$\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$2A_4$ & $5$  &$00010000$ & $\Delta^2$ & $2A_4$ & $\cox(2A_4)$,$\cox(E_8)^6,r$\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$2A_3+2A_1$ &  $4$ &$01000000$ & $\Delta^2\Delta_{2345}^{2}$ & $A_1+A_7$ & $\cox(2A_3+2A_1)$\\\hline
-        &      &          $\phantom{11}0$&&&\\
-$2D_4(a1)$ & $4$  & $00001000$ & $\Delta^2$ & $A_3+D_5$ &r \\\hline
-        &      &          $\phantom{11}1$&&&\\
-$4A_2$ & $3$  &$00000000$ & $\Delta^2$ & $A_8$ & $\cox(4A_2)$,$\cox(E_8)^{10}$, r\\\hline
-        &      &          $\phantom{11}0$&&&\\  
-$8A_1$ & $2$ &$10000000$ & $\Delta^2$ & $D8$ & $\cox(8A_1)$,$\cox(E_8)^{15}$,$w_0$, r\\\hline
+        &      &          $\phantom{11}0$&&\\
+$E_7(a4)+A_1$ & $6$  &$01000010$ & $\Delta^2\Delta_{34}^{4}$ & $2A_1+A_5$ \\\hline
+        &      &          $\phantom{11}1$&&\\
+$E_6(a2)+A_2$ & $6$  &$00000100$ & $\Delta^2\Delta_{2345}^{2}$ & $A_2+A_5$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$2D_4$ & $6$  &$10001000$ & $\Delta^2\Delta_{1367}^{4}$ & $A_3+D_4$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$D_4+4A_1$ & $6$  &$11000000$ & $\Delta^2\Delta_{123456}^{4}$ & $A_7$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$A_1+A_2+A_5$ & $6$  &$00100000$ & $\Delta^2\Delta_{234578}^{2}\Delta_{78}^{2}$ & $A_1+A_2+A_5$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$2A_4$ & $5$  &$00010000$ & $\Delta^2$ & $2A_4$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$2A_3+2A_1$ &  $4$ &$01000000$ & $\Delta^2\Delta_{2345}^{2}$ & $A_1+A_7$ \\\hline
+        &      &          $\phantom{11}0$&&\\
+$2D_4(a1)$ & $4$  & $00001000$ & $\Delta^2$ & $A_3+D_5$ \\\hline
+        &      &          $\phantom{11}1$&&\\
+$4A_2$ & $3$  &$00000000$ & $\Delta^2$ & $A_8$ \\\hline
+        &      &          $\phantom{11}0$&&\\  
+  $8A_1$ & $2$ &$10000000$ & $\Delta^2$ & $D8$ \\\hline
+                                          
 \end{tabular}
 
 \bibliographystyle{plain}
@@ -1757,6 +1941,20 @@ $8A_1$ & $2$ &$10000000$ & $\Delta^2$ & $D8$ & $\cox(8A_1)$,$\cox(E_8)^{15}$,$w_
        pages={382\ndash 410},
   url={https://doi-org.proxy-um.researchport.umd.edu/10.1016/j.jpaa.2015.06.018},
       review={\MR{3393467}},
+    }
+
+    \bib{debacker_reeder}{article}{
+      author={DeBacker, Stephen},
+      author={Reeder, Mark},
+       title={Depth-zero supercuspidal {$L$}-packets and their stability},
+        date={2009},
+        ISSN={0003-486X},
+     journal={Ann. of Math. (2)},
+      volume={169},
+      number={3},
+       pages={795\ndash 901},
+  url={https://doi-org.proxy-um.researchport.umd.edu/10.4007/annals.2009.169.795},
+      review={\MR{2480618}},
 }
 
 \bib{gkp}{article}{
@@ -1804,10 +2002,10 @@ $8A_1$ & $2$ &$10000000$ & $\Delta^2$ & $D8$ & $\cox(8A_1)$,$\cox(E_8)^{15}$,$w_
 }
 
 \bib{rgly}{article}{
-      author={Gross, Benedict~H.},
+  author={Reeder, Mark},
       author={Levy, Paul},
-      author={Reeder, Mark},
       author={Yu, Jiu-Kang},
+      author={Gross, Benedict~H.},
        title={Gradings of positive rank on simple {L}ie algebras},
         date={2012},
         ISSN={1083-4362},
@@ -1870,7 +2068,18 @@ $8A_1$ & $2$ &$10000000$ & $\Delta^2$ & $D8$ & $\cox(8A_1)$,$\cox(E_8)^{15}$,$w_
        pages={219\ndash 271},
       review={\MR{MR909227 (89c:11172)}},
 }
-
+\bib{levy_exceptional}{article}{
+      author={Levy, Paul},
+       title={K{W}-sections for {V}inberg's {$\theta$}-groups of exceptional
+  type},
+        date={2013},
+        ISSN={0021-8693},
+     journal={J. Algebra},
+      volume={389},
+       pages={78\ndash 97},
+  url={https://doi-org.proxy-um.researchport.umd.edu/10.1016/j.jalgebra.2013.04.035},
+      review={\MR{3065993}},
+    }
 \bib{ov}{book}{
       author={Onishchik, A.~L.},
       author={Vinberg, {\`E}.~B.},
@@ -1908,7 +2117,17 @@ $8A_1$ & $2$ &$10000000$ & $\Delta^2$ & $D8$ & $\cox(8A_1)$,$\cox(E_8)^{15}$,$w_
        pages={3\ndash 47},
   url={https://doi-org.proxy-um.researchport.umd.edu/10.4171/LEM/56-1-1},
       review={\MR{2674853}},
-}
+    }
+
+    \bib{serre_linear}{book}{
+      author={Serre, Jean-Pierre},
+       title={Linear representations of finite groups},
+   publisher={Springer-Verlag, New York-Heidelberg},
+        date={1977},
+        ISBN={0-387-90190-6},
+        note={Translated from the second French edition by Leonard L. Scott,
+  Graduate Texts in Mathematics, Vol. 42},
+      review={\MR{0450380}}}
 
 \bib{springer_regular}{article}{
       author={Springer, T.~A.},
@@ -1919,8 +2138,12 @@ $8A_1$ & $2$ &$10000000$ & $\Delta^2$ & $D8$ & $\cox(8A_1)$,$\cox(E_8)^{15}$,$w_
       volume={25},
        pages={159\ndash 198},
   url={https://doi-org.proxy-um.researchport.umd.edu/10.1007/BF01390173},
-      review={\MR{0354894}},
+  review={\MR{0354894}},
 }
+
+
+
+
 
 \end{biblist}
 \end{bibdiv}
