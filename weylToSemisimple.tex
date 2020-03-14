@@ -234,7 +234,8 @@
 \author{Xuhua He}
 \author{Sian Nie}
 \affil{Department of Mathematics, University of Maryland, jda@math.umd.edu}
-\affil{Department of Mathematics, University of Maryland, xuhuahe@math.umd.edu}
+\affil{Department of Mathematics, University of Maryland}
+\affil{Current: The Institute of Mathematical Sciences and Department of Mathematics, The Chinese University of Hong Kong, Shatin, N.T., Hong Kong, xuhuahe@gmail.com}
 \affil{Institute of Mathematics, Academy of Mathematics and Systems Science, Chinese Academy of Sciences, 100190, Beijing, China
   , niesian@amss.ac.cn}
 \date{}                     %% if you don't need date to appear
@@ -247,7 +248,7 @@
 
 \let\thefootnote\relax\footnotetext{X.~H.~was partially supported by
   NSF DMS-1801352. S.N. is supported in part by QYZDB-SSW-SYS007 and
-  NSFC grant (No. 11621061).}
+  NSFC grant (Nos. 11501547, 11621061 and 11688101).}
 
 \let\thefootnote\relax\footnotetext{{\bf Keywords}: algebraic groups,
   Weyl groups, elliptic conjugacy classes, semisimple conjugacy
@@ -272,7 +273,7 @@ map. We also consider the twisted case.
 \sec{Introduction}
 
 Let $G$ be a connected complex semisimple group.
-Choose a Cartan subgroup $T\subset G$, let $N(T)$ be the normalizer of $T$ in $G$,
+Choose a Cartan subgroup $T\subset G$, let $N(T)=N_G(T)$ be the normalizer of $T$ in $G$,
 and let $W=N(T)/T$ be the Weyl group.
 We have the exact sequence
 \begin{equation}
@@ -346,7 +347,8 @@ automorphism of $W$, which we also denote by $\delta$. We define
 $$
 \Gext=G \rtimes\langle\delta\rangle, \quad \Wext=W\rtimes\langle\delta\rangle.
 $$
-Then $\Wext\simeq \Norm_{\Gext}(T)/T$, and we write $p:\Norm_{\Gext}(T)\rightarrow \Wext$.
+Let $N_{\Gext}(T)$ be the normalizer of $T$ in $\Gext$. 
+Then $\Wext\simeq N_{\Gext}(T)/T$, and we write $p:N_{\Gext}(T)\rightarrow \Wext$.
 
 Let $\Delta=\Delta(T,G)$ be the root system, and
 $V=\Q\langle\Delta\rangle$. This is a representation of $\Wext$ which
@@ -367,18 +369,32 @@ $[(G\delta)^{\ss}]$ for the $G$-conjugacy classes of semisimple
 elements in $G\delta$.  As in the case of $\Wext$, two elements of
 $G\delta$ are $G$-conjugate if and only if they are $\Gext$-conjugate.
 
-The following Lemma is well known. For example see \cite[Remark 4.1.1]{debacker_reeder}.
-
 \begin{lemma}
 \label{l:conjugate}
 Suppose $w\in W\delta$ is elliptic.
 Then any two
-elements of $p\inv(w)\subset\Norm_{\Gext}(T)$ are $T$-conjugate.
+elements of $p\inv(w)\subset N_{\Gext}(T)$ are $T$-conjugate.
 \end{lemma}
+
+\begin{proof}
+The result is known, e.g. see \cite[Remark 4.1.1]{debacker_reeder}. We include a proof for completeness. 
+
+Suppose $g\in p\inv(w)\subset \Norm_G(T)\delta$. 
+Then for $t\in T$,
+$$
+tgt\inv=tw(t\inv)g.
+$$
+Since $w$ is elliptic the map $t\rightarrow tw(t\inv)$ has finite
+kernel, so is surjective.
+
+Now suppose $g_1,g_2\in p\inv(w)$.
+Since $w\in W\delta$, $g_1,g_2\in G\delta$. Write $g_1=h_1\delta,g_2=h_2\delta$ with $h_1,h_2\in G$.
+By the previous discussion choose $t$ so that $tw(t\inv)=h_2h_1\inv$. Then $tg_1t\inv=g_2$.
+\end{proof}
 
 \begin{comment}
 \begin{proof}
-Suppose $g\in p\inv(w)\subset \Norm_G(T)\delta$. 
+Suppose $g\in p\inv(w)\subset N_G(T)\delta$. 
 Then for $t\in T$
 $$
 tgt\inv=tw(t\inv)g.
@@ -395,7 +411,7 @@ By the previous discussion choose $t$ so that $tw(t\inv)=h_2h_1\inv$. Then $tg_1
 \begin{definition}
  \label{d:basictwisted}
 Suppose $w\in W\delta$ is elliptic.
-Choose $n_w\in p\inv(w)\subset \Norm_G(T)\delta$, and define
+Choose $n_w\in p\inv(w)\subset N_G(T)\delta$, and define
 $$
 \Psi: [(W\delta)^\e]\rightarrow[(G\delta)^{\ss}]: [w]\rightarrow [n_w].
 $$
@@ -411,7 +427,7 @@ algebraically closed field of characteristic $0$, and in general with
 a weak restriction on the characteristic. See Remark
 \ref{r:otherfield}.
 
-The authors thank Tom Haines for numerous helpful discussions and thank the referee for their suggestions and comments. 
+The authors thank Tom Haines for numerous helpful discussions and thank the referees for their suggestions and comments. 
 
 \sec{The Algorithm}
 \label{const}
@@ -525,12 +541,12 @@ We include a proof since it plays a role in the subsequent Proposition.
 
 
 \begin{proposition}
-Suppose $G$ is a finite group all of whose characters take values in $\Q$. 
-Suppose $g\in G$ has order $d$. If $(d,k)=1$ then 
- $g^k$ is conjugate to $g$.
+Suppose $W$ is a finite group all of whose characters take values in $\Q$. 
+Suppose $w\in W$ has order $d$. If $(d,k)=1$, then 
+ $w^k$ is conjugate to $w$.
 \end{proposition}
 
-It is well known that all representations of Weyl take integral values \cite{springer_regular}*{Theorem 8.5}.
+It is well known that all representations of Weyl group take integral values \cite{springer_regular}*{Theorem 8.5}.
 
 \medskip
 
@@ -538,18 +554,18 @@ It is well known that all representations of Weyl take integral values \cite{spr
 Let $F=\Q(\zeta_d)$ where $\zeta_d$ is a primitive $d^{th}$ root of unity.
 If $\pi$ is a representation of $W$, with character $\theta_\pi$, then
 $$
-\theta_\pi(g)=\sum_{i=1}^r z_i,
+\theta_\pi(w)=\sum_{i=1}^r z_i,
 $$
 where each $z_i$ is a $d^{th}$ root of unity in $F$. Then
 $$
-\theta_\pi(g^k)=\sum_{i=1}^r z_i^k.
+\theta_\pi(w^k)=\sum_{i=1}^r z_i^k.
 $$
 Since $(k,d)=1$ the map $\zeta_d\rightarrow \zeta_d^k$ induces an automorphism $\tau$ of
 $F/\Q$. By assumption  $\sum_i z_i\in \Q$, so
 $$
-\theta_\pi(g^k)=\sum_i z_i^k=\sum_i \tau(z_i)=\tau(\sum z_i)=\sum z_i=\theta_\pi(g).
+\theta_\pi(w^k)=\sum_i z_i^k=\sum_i \tau(z_i)=\tau(\sum z_i)=\sum z_i=\theta_\pi(w).
 $$
-Since the characters separate conjugacy classes this implies $g$ is conjugate to $g^k$.
+Since the characters separate conjugacy classes this implies $w$ is conjugate to $w^k$.
 
 \end{proof}
 
@@ -557,31 +573,31 @@ We need a slight generalization of this.
 
 \begin{proposition}
   \label{p:g^k}
-Suppose $G$ is as in the previous Proposition, and  $\delta$
-is an automorphism of $G$ of finite order. 
-Let $\Gext=G\rtimes\langle\delta\rangle$. Suppose
-$g\in G\delta\subset \Gext$ has order $d$.
-Suppose $(k,d)=1$ and $g^k$ is also contained in $G\delta$. 
-Then $g^k$ is conjugate to $g$.
+Suppose $W$ is as in the previous Proposition, and  $\delta$
+is an automorphism of $W$ of finite order. 
+Let $\Wext=W\rtimes\langle\delta\rangle$. Suppose
+$w\in W\delta\subset \Wext$ has order $d$.
+Suppose $(k,d)=1$ and $w^k$ is also contained in $W\delta$. 
+Then $w^k$ is conjugate to $w$.
 \end{proposition}
 
-Recall (Section \ref{s:twisted}) the statements with $G$-conjugacy or
-$\Gext$-conjugacy are equivalent.
+Recall (Section \ref{s:twisted}) the statements with $W$-conjugacy or
+$\Wext$-conjugacy are equivalent.
 
 \begin{proof}
-  Let $m$ be the order of $\delta$. By Clifford theory the characters of $\Gext$ are defined over
+  Let $m$ be the order of $\delta$. By Clifford theory the characters of $\Wext$ are defined over
   $\Q(\zeta_m)$ where $\zeta_m$ is a primitive $m^{th}$ root of $1$.
   Replace $\Q$ with $E=\Q(\zeta_m)$ in the proof of the previous
   Proposition, and consider the field $E(\zeta_d)$. 
-  The condition $g^k\in G\delta$ implies $k=1\pmod m$, so $\zeta_m^k=\zeta_m$ and 
+  The condition $w^k\in W\delta$ implies $k=1\pmod m$, so $\zeta_m^k=\zeta_m$ and 
   the map $\zeta_d\rightarrow \zeta_d^k$ induces an automorphism of $E(\zeta_d)/E$.
 The  rest of the proof goes through with minor changes.
 \end{proof}
 
 \begin{remarkplain}
 \label{r:otherfield}
-Suppose $F$ is an algebraically closed field and the order of $\Wext$ is invertible in $F$.
-Then all of the elements of $\Norm_{\Gext}(T)$ are semisimple
+Suppose $F$ is an algebraically closed field and $G$ is a connected semisimple algebraic group over $F$. Assume furthermore that the order of $\Wext$ is invertible in $F$.
+Then all of the elements of $N_{\Gext}(T)$ are semisimple
 and a version of Theorem \ref{t:main} holds in this setting. The only issue is to make
 sense of the right hand side of \eqref{e:main} over $F$. 
 
@@ -961,25 +977,25 @@ $$
 $$
 
 We say $v\in V^{\delta_1}$ is a general point of $V^{\delta_1}$ if $\langle\a, v\rangle=0$ for some
-root $\a \in \Delta$, then $\langle\a, V^{\d_1}\rangle=0$.  We can
+root $\a \in \Delta$ implies $\langle\a, V^{\d_1}\rangle=0$.  We can
 find a general point of $V^{\delta_1}$ in a sufficiently small
 neighborhood of $\ch\l_{1}$.  Furthermore, since the (open)
 $\Pi_1$-dominant chamber intersects $V^{\delta_1}$ we may assume $v$
 is strictly $\Pi_1$-dominant.
 Given $v$ let  $z \in W$ be the (unique) minimal element such
-that $z\i(v) = \bar v$, the unique dominant $W$-conjugate of $v$.
+that $z\i(v) = \overline v$, the unique dominant $W$-conjugate of $v$.
 Then $z\inv(\ch\l_{1})=\overline{\ch\l_{1}}$.
 
-Set $y=z\inv\delta_1z$.  Then $y\overline v=\overline v$, and
+Set $y=z\inv\delta_1z$.  Then $y(\overline v)=\overline v$, and
 (since $\overline v$ is dominant and $\delta$ fixes the dominant
 chamber) $\delta(\overline v)=\overline v$.
 
 Set
 $$
-\Delta'=\{\alpha\in\Delta\mid \langle\alpha,V^{\delta_1}\rangle=0.
+\Delta'=\{\alpha\in\Delta\mid \langle\alpha,V^y\rangle=0\}.
 $$
 Then $\Delta'$ is the root system of a Levi factor $L'$; we write $W_{\Delta'}$ for its Weyl group.
-Note that, since $v$ is a general point of $V^{\delta_1}$,  $\Delta'=\{\alpha\in\Delta\mid \langle\alpha,v\rangle=0$.
+Note that, since $v$ is a general point of $V^{\delta_1}$,  $\Delta'=\{\alpha\in\Delta\mid \langle\alpha,\overline v\rangle=0\}$.
 Then  (since $\delta(\overline v)=\overline v$), $\delta(\Delta')=\Delta'$. Also $y\in W_{\Delta'}\delta$,
 and by the definition of $z$ we have
 
@@ -1016,7 +1032,7 @@ Now we consider the case where $\dim D=2$. Let $S \subseteq D$ the circle contai
 
 Set $\mathcal B= \Delta^- \cap z \i(\Delta^+) \cap z \i \d_1 \i(\Delta^-)$. Then \[\tag{a}\mathcal B=\{\b \in \Delta^-; H_\b \text{ separates } z^{-1}(\caC) \text{ from } \caC \text{ and } y^{-1} z^{-1}(\caC)\},\] where $\caC$ is the dominant chamber and $H_\b \subseteq V$ denotes the root hyperplane of $\b$.
 
-By the property that $z$ is of minimal length making $v$ dominant, we see
+As $z(\Delta')>0$, we see
 $\Delta' \cap \mathcal B = \emptyset$. Since $y \in W' \d =\d W'$, we have $y^{-i}(\mathcal B) \subseteq \Delta^- - \Delta'$. Let $\b \in y^{-i}(\mathcal B)$. By (a), $H_\b$ separates $y^{-i} z^{-1} \caC$ from $y^{-i-1} z^{-1} \caC$. This means $\b \notin z^{-1}(\Delta_{1})$ as
 $\delta_1(\Pi_1)=\Pi_1$.
 %What is x?$x(\Pi_1)=\Pi_1$.
@@ -1073,7 +1089,7 @@ Notice that the acute arc $(v_i', v_{i+1}')$ is of angle $0 < \th_1 < \pi$. It f
 \end{exampleplain}
 
 \subsection{Proof of Theorem \ref{t:main}}
-We argue by induction on the order of $\Delta$.  If
+We argue by induction on the cardinality of $\Delta$.  If
 $\Delta=\emptyset$, then the statement is trivial.  Suppose that
 $\Delta \neq \emptyset$ and that the statement is true for
 any proper subsystem of $\Delta$.
@@ -1117,20 +1133,32 @@ where
   &=
 \exp (\pi \sqrt{-1}\sum_{\b \in \Delta^- \cap z\inv(\Delta^+) \cap z\inv\d_1 \i(\Delta^-)} \b^\vee).
 \end{align}
+\end{subequations}
 
+As in Section \ref{technical} let $\Delta'=\{\alpha\in\Delta\mid \langle\alpha, V^y\rangle=0\}$.
+This is the root system of a Levi factor $L'$, with Weyl group $W_{\Delta'}$.
 
+\begin{lemma}\label{empty}
+	We have $z\i(\Delta_1^+) \subseteq \Delta^+$ and $z\i(\Delta_1) \cap \Delta' = \emptyset$.
+\end{lemma}
+\begin{proof}
+  Notice that $\Delta' = \{\a \in \Delta, \langle\a, \bar v\rangle = 0 \}$. For $\gamma \in \Delta_1^+$ we have $$\langle z\i(\gamma), \bar v\rangle = \langle z\i(\gamma), z\i(v)\rangle = \langle \gamma, v\rangle > 0,$$ where the last inequality follows from
+  the fact that $v$ is strictly $\Pi_1$-dominant. So $z\i(\gamma) > 0$ and $z\i(\gamma) \notin \Delta'$ as desired.
+\end{proof}
 
 
 %Applying Lemma \ref{average}  we see 
 %\begin{equation}
 %n(w)\sim n(y)\prod_{j=0}^{d-1}y^j(t)\exp(\frac{2 \pi \sqrt{-1}z\inv( \ch\l_{0, L_1})}{d}).
 %\end{equation}
-As in Section \ref{technical} let $\Delta'=\{\alpha\in\Delta\mid \langle\alpha, V^{\delta_1}\rangle=0\}$.
-This is the root system of a Levi factor $L'$, with Weyl group $W_{\Delta'}$.
-Let $\ch\gamma$ be the summand in (d). By Lemma \ref{tech}, with $c=\frac{d\theta_1}{2\pi}\in\Z$ we have
 
+As in Section \ref{technical} let $\Delta'=\{\alpha\in\Delta\mid \langle\alpha, V^y\rangle=0\}$. This is a root system of a Levi factor $L'$,
+with Weyl group $W_{\Delta'}$.
+Let $\ch\gamma$ be the summand in (d). By Lemma \ref{tech} and Lemma \ref{empty}, with $c=\frac{d\theta_1}{2\pi}\in\Z$ we have
+\begin{subequations}
+\label{e:maincalc1}
 \begin{equation}
-\sum_{j=0}^{d-1}y^j\ch\gamma=-\rho^\vee+z^{-1}(\rho_1^\vee)+\rho_{L'}^\vee.
+\sum_{j=0}^{d-1}y^j\ch\gamma=2c(-\rho^\vee+z^{-1}(\rho_1^\vee)+\rho_{L'}^\vee).
 \end{equation}
 Since (d) is unchanged if we replace $\ch\gamma$ with $-\ch\gamma$, 
 by  Lemma \ref{average}  we see $n(y)t$ is $T$-conjugate to
@@ -1143,30 +1171,27 @@ n(w)\sim n(y)\exp(\frac{2\pi \sqrt{-1}c(\ch\rho-z\inv(\ch\rho_1)-\ch\rho_{L'})}{
 \exp(\frac{2 \pi \sqrt{-1}z\inv( \ch\l_{0, L_1})}{d}).
 \end{equation}
 \end{subequations}
-
 \begin{lemma}
-No roots in $\Delta'$ vanish identically on $V(\d_1, \th_1)$.
+No roots in $\Delta'$ vanish identically on $V(y, \th_1)$.
 \end{lemma}
 
 
 \begin{proof}
 
 Let $\a \in \Delta'$. We have to show that
-$\langle\a, V(\d_1, \th_1)\rangle \neq \{0\}$. 
-Assume otherwise.
+$\langle\a, V(y, \th_1)\rangle \neq \{0\}$. 
+Assume otherwise. Noticing that
 $\d_1=w (x_2 \cdots x_k) \i$ and $x_2 \cdots x_k \in W_1$ fixes each
 point of $V(w, \th_1)$, we have
-$V(w, \th_1) \subseteq V(\d_1, \th_1)$. Since $\langle\alpha,V(\delta_1,\theta_1)\rangle=0$ we conclude 
-$\a \in \Delta_1$. On the other hand, since
-$\d_1(\Delta_1^+) = \Delta_1^+$, we have $\rho_1^\vee \in
-V^{\d_1}$. So $\langle\a, \rho_1^\vee \rangle = 0$, which is a contradiction.
+$V(w, \th_1) \subseteq V(\d_1, \th_1)=z^{-1}(V(y, \th_1))$. Since $\langle\alpha,V(y,\theta_1)\rangle=\{0\}$, we conclude that
+$z(\a) \in \Delta_1$, which contradicts Lemma \ref{empty}.
 \end{proof}
 
 
 Therefore we can apply Proposition \ref{regular} to conclude
 $n(y)\sim_{L'}\delta\exp(\frac{2\pi \sqrt{-1}c}d\ch\rho_{L'})$.
 Using the fact that $\ch\rho-z\inv\ch\rho_1-\ch\rho_{L'}$ and $z\inv(\ch\lambda_{0,L_1})$ are central in $L'$, we can insert
-this in \eqref{e:maincalc}(g)  to give
+this in \eqref{e:maincalc1}(c)  to give
 $$
 \begin{aligned}
 n(w)&\sim \delta\exp(\frac{2\pi \sqrt{-1}c}d\ch\rho_{L'})
@@ -1196,8 +1221,8 @@ simple roots $\Pi$ and Weyl group $W$. We are also given
 an  automorphism $\delta$ of $G$, possibly trivial, of finite order $n$, preserving a pinning.
 The semisimple
 conjugacy classes of $G\delta$ of finite order are parametrized by their
-{\it Kac diagrams}. We summarize the statements here, and refer to
-\cite{ov}, \cite{kac_book} and \cite{reeder_torsion} for details.
+{\it Kac diagrams}. We summarize the statements here, and refer to \cite{DM}, \cite{kac_book}, 
+\cite{ov} and \cite{reeder_torsion} for details.
 
 
 Let $X^*$, respectively $X_*$, be the lattice of characters (resp. co-characters) of $T$.
@@ -1500,7 +1525,7 @@ Without loss of generality, we assume that $C \subset W \delta$. Let $(J, D) \in
 \end{proposition}
 
 \begin{proof}
-	Let $(J, D), (J', D')$ be elements in $\mathcal P_{\delta}$ that correspond to $C$. By Theorem \ref{cal-P}, there exists $x \in {}^{J_2} W^{J_1} \cap W^\delta$ with $x J_1 x^{-1}=J_2$. As discussed in \cite{AH}*{Section 2} the Tits group provides a section $\sigma:W\rightarrow \Norm_G(T)$ satisfying
+	Let $(J, D), (J', D')$ be elements in $\mathcal P_{\delta}$ that correspond to $C$. By Theorem \ref{cal-P}, there exists $x \in {}^{J_2} W^{J_1} \cap W^\delta$ with $x J_1 x^{-1}=J_2$. As discussed in \cite{AH}*{Section 2} the Tits group provides a section $\sigma:W\rightarrow N_G(T)$ satisfying
 	$\delta(\sigma(w))=\sigma(\delta(w))$. In particular, $\sigma(x)$ is $\delta$-stable. Since $x J x^{-1}=J'$, we have $\sigma(x) L_J \delta(\sigma(x))^{-1}=\sigma(x) L_J \sigma(x)^{-1}=L_{J'}$. Since $x D x^{-1}=D'$, we have $\sigma(x) \Psi_J(D) \sigma(x)^{-1}=\Psi_{J'}(D')$. Hence $\widetilde{\Psi_J(D)}=\widetilde{\Psi_{J'}(D')}$. 
 \end{proof}
 
@@ -1955,6 +1980,24 @@ $4A_2$ & $3$  &$00000000$ & $\Delta^2$ & $A_8$ \\\hline
        pages={795\ndash 901},
   url={https://doi-org.proxy-um.researchport.umd.edu/10.4007/annals.2009.169.795},
       review={\MR{2480618}},
+}
+
+\bib{DM}{article}{
+    AUTHOR = {Digne, Fran\c{c}ois and Michel, Jean},
+     TITLE = {Quasi-semisimple elements},
+   JOURNAL = {Proc. Lond. Math. Soc. (3)},
+  FJOURNAL = {Proceedings of the London Mathematical Society. Third Series},
+    VOLUME = {116},
+      YEAR = {2018},
+    NUMBER = {5},
+     PAGES = {1301--1328},
+      ISSN = {0024-6115},
+   MRCLASS = {20G15},
+  MRNUMBER = {3805058},
+MRREVIEWER = {Giancarlo Lucchini Arteche},
+       DOI = {10.1112/plms.12121},
+       URL = {https://doi.org/10.1112/plms.12121},
+       review={\MR{3805058}}, 
 }
 
 \bib{gkp}{article}{
